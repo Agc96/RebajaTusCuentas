@@ -22,8 +22,16 @@
     <string name="home_lbl_email">Correo electrónico</string>
     <string name="home_btn_logout">Cerrar sesión</string>
 
+    <!-- Creación de inmuebles -->
+    <string name="inmovable_create_txt_main">Principal</string>
+    <string name="inmovable_create_txt_location">Ubicación</string>
+    <string name="inmovable_create_txt_photos">Fotos</string>
+
     <!-- Mensajes de conexión al API REST -->
     <string name="api_dlg_error_msg_http">Ocurrió un error desconocido.\nCódigo de error: HTTP %d</string>
     <string name="api_dlg_error_msg_rest">El servicio otorgó un error desconocido.\nCódigo de error: %d</string>
     <string name="api_dlg_error_msg_empty">El servicio no otorgó respuesta.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

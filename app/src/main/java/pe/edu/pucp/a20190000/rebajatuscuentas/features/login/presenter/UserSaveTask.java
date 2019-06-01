@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -9,6 +9,7 @@ import de.rtner.security.auth.spi.SimplePBKDF2;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.out.UserOutRO;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.AppDatabase;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view.ILoginView;
 
 public class UserSaveTask extends AsyncTask<Void, Void, Boolean> {
 

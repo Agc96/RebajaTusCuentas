@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.home.HomeActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter.ILoginPresenter;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter.LoginPresenter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {

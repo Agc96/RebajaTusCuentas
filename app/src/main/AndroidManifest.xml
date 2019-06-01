@@ -11,10 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".features.inmovable.list.view.InmovableListActivity"></activity>
+        <activity android:name=".features.inmovable.create.view.InmovableCreateActivity" />
         <activity android:name=".features.home.HomeActivity" />
-        <activity android:name=".features.login.LoginActivity">
+        <activity android:name=".features.login.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

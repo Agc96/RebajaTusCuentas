@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.ApiAdapter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.in.LoginInRO;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.out.UserOutRO;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view.ILoginView;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 import retrofit2.Call;
 import retrofit2.Callback;

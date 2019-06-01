@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IPresenter;
 

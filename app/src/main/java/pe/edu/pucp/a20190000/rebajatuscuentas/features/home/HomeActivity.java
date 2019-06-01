@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.LoginActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view.LoginActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
