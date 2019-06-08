@@ -18,7 +18,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
 
-    private final static String TAG = "MFL_LOGIN_VIEW";
+    private final static String TAG = "RTC_LOGIN_VIEW";
     public final static String LOGIN_EXTRA_FULLNAME = "LOGIN_EXTRA_FULLNAME";
     public final static String LOGIN_EXTRA_EMAIL = "LOGIN_EXTRA_EMAIL";
 

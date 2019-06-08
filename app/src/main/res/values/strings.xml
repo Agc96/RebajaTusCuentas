@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My First Login</string>
+    <string name="app_name">Rebaja tus Cuentas</string>
 
     <!-- Inicio de sesión -->
     <string name="login_txt_title">Inicio de sesión</string>
@@ -18,20 +18,28 @@
 
     <!-- Pantalla de bienvenida -->
     <string name="home_txt_title">Pantalla de bienvenida</string>
-    <string name="home_lbl_fullname">Nombres y apellidos</string>
-    <string name="home_lbl_email">Correo electrónico</string>
-    <string name="home_btn_logout">Cerrar sesión</string>
+    <string name="home_txt_inmovable">Inmuebles</string>
+    <string name="home_txt_logout">Cerrar sesión</string>
 
     <!-- Creación de inmuebles -->
-    <string name="inmovable_create_txt_main">Principal</string>
-    <string name="inmovable_create_txt_location">Ubicación</string>
-    <string name="inmovable_create_txt_photos">Fotos</string>
+    <string name="inm_create_tab_main">Principal</string>
+    <string name="inm_create_tab_location">Ubicación</string>
+    <string name="inm_create_tab_photos">Fotos</string>
+    <!-- Creación de inmuebles: Datos principales -->
+    <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
+    <string name="inm_create_main_lbl_price">Precio máximo</string>
+    <!-- Creación de inmuebles: Datos de ubicación -->
+    <string name="inm_create_loc_lbl_department">Departamento</string>
+    <string name="inm_create_loc_lbl_province">Provincia</string>
+    <string name="inm_create_loc_lbl_district">Distrito</string>
+    <string name="inm_create_loc_lbl_location">Dirección</string>
+    <string name="inm_create_loc_lbl_reference">Referencia(s)</string>
 
     <!-- Mensajes de conexión al API REST -->
     <string name="api_dlg_error_msg_http">Ocurrió un error desconocido.\nCódigo de error: HTTP %d</string>
     <string name="api_dlg_error_msg_rest">El servicio otorgó un error desconocido.\nCódigo de error: %d</string>
     <string name="api_dlg_error_msg_empty">El servicio no otorgó respuesta.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Quitar esto -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

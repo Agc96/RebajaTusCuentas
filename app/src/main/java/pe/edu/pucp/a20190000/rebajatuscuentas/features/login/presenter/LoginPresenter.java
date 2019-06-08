@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class LoginPresenter implements ILoginPresenter {
 
-    private final static String TAG = "MFL_LOGIN_PRESENTER";
+    private final static String TAG = "RTC_LOGIN_PRESENTER";
     private ILoginView view;
 
     public LoginPresenter(ILoginView view) {

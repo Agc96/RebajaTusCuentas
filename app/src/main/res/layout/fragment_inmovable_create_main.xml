@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inm_create_main_lyt_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".features.inmovable.create.view.InmovableCreateMainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/inm_create_main_txt_name"
+        android:labelFor="@id/inm_create_main_ipt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/inm_create_main_lbl_name" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/inm_create_main_ipt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/inm_create_main_lbl_price"
+        android:labelFor="@id/inm_create_main_ipt_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/inm_create_main_lbl_price" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/inm_create_main_ipt_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

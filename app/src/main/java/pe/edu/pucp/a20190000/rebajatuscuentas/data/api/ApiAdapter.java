@@ -8,8 +8,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class ApiAdapter {
 
-    public static final String APPLICATION_NAME = "MY_FIRST_LOGIN";
-    private static final String BASE_URL = "https://demo2340870.mockable.io/my-first-login-rest/remote/";
+    public static final String APPLICATION_NAME = "RTC_MOVIL";
+    private static final String BASE_URL = "https://demo2340870.mockable.io/rtc-rest/remote/";
     private static final int TIMEOUT = 90; // seconds (segundos)
     private static ApiService INSTANCE;
 

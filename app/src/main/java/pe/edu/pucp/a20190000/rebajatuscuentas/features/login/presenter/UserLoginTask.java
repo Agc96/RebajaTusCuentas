@@ -14,7 +14,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class UserLoginTask extends AsyncTask<Void, Void, User> {
 
-    private final static String TAG = "MFL_LOGIN_LOGINTASK";
+    private final static String TAG = "RTC_LOGIN_LOGINTASK";
     private WeakReference<ILoginView> view;
     private String username;
     private String password;

@@ -1,85 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inm_create_loc_lyt_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".features.inmovable.create.view.InmovableCreateLocationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/inm_create_loc_txt_department"
+    <LinearLayout
+        android:id="@+id/inm_create_loc_lyt_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/inm_create_loc_ipt_department"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_department" />
 
-    <TextView
-        android:id="@+id/inm_create_loc_txt_province"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/inm_create_loc_ipt_province"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_province" />
 
-    <TextView
-        android:id="@+id/inm_create_loc_txt_district"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/inm_create_loc_ipt_district"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_district" />
 
-    <TextView
-        android:id="@+id/inm_create_loc_txt_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/inm_create_loc_ipt_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_location" />
 
-    <TextView
-        android:id="@+id/inm_create_loc_txt_reference"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/inm_create_loc_ipt_reference"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_reference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_reference" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_reference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
+</ScrollView>

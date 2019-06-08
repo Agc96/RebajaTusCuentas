@@ -13,7 +13,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view.ILoginView;
 
 public class UserSaveTask extends AsyncTask<Void, Void, Boolean> {
 
-    private final static String TAG = "MFL_LOGIN_SAVETASK";
+    private final static String TAG = "RTC_LOGIN_SAVETASK";
     private WeakReference<ILoginView> view;
     private UserOutRO userOutRO;
     private String username;
