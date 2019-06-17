@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Botón de búsqueda -->
+    <item
+        android:id="@+id/inm_list_tlb_search"
+        android:icon="@drawable/ic_toolbar_search"
+        android:title="@android:string/search_go" />
+</menu>

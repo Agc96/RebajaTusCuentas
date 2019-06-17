@@ -4,6 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.presenter.InmovableCreateTabAdapter;
@@ -17,6 +18,10 @@ public class InmovableCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inmovable_create);
+
+        // Configurar barra de aplicación
+        Toolbar mToolbar = findViewById(R.id.inm_create_lyt_toolbar);
+        setSupportActionBar(mToolbar);
 
         mViewPager = findViewById(R.id.inm_create_lyt_pager);
         setUpTabs();

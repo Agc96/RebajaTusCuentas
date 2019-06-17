@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/inm_create_lyt_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".features.inmovable.create.view.InmovableCreateActivity">
 
     <android.support.v7.widget.Toolbar
@@ -13,15 +14,12 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/inm_create_lyt_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        app:layout_constraintTop_toBottomOf="@id/inm_create_lyt_toolbar">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/inm_create_lyt_tabs"
@@ -47,4 +45,4 @@
                 android:text="@string/inm_create_tab_photos" />
         </android.support.design.widget.TabLayout>
     </android.support.v4.view.ViewPager>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
