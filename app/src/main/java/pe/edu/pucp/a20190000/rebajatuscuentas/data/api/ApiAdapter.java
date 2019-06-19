@@ -1,5 +1,9 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.data.api;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -15,6 +19,10 @@ public class ApiAdapter {
 
     public static ApiService getInstance() {
         if (INSTANCE == null) {
+            // Configurar el parsing de objetos JSON de Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            // objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+            // objectMapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
             // Crear la instancia de OkHttp, una librería que Retrofit usa para las peticiones HTTP
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -24,7 +32,7 @@ public class ApiAdapter {
             // Crear la instancia de Retrofit
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(JacksonConverterFactory.create())
+                    .addConverterFactory(JacksonConverterFactory.create(objectMapper))
                     .client(httpClient)
                     .build();
             // Crear la interfaz que manejará el servicio REST

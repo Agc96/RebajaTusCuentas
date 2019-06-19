@@ -15,6 +15,7 @@
 
         <TextView
             android:id="@+id/inm_create_loc_lbl_department"
+            android:labelFor="@id/inm_create_loc_ipt_department"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_department" />
@@ -29,6 +30,7 @@
 
         <TextView
             android:id="@+id/inm_create_loc_lbl_province"
+            android:labelFor="@id/inm_create_loc_ipt_province"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_province" />
@@ -43,6 +45,7 @@
 
         <TextView
             android:id="@+id/inm_create_loc_lbl_district"
+            android:labelFor="@id/inm_create_loc_ipt_district"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_district" />
@@ -72,6 +75,7 @@
 
         <TextView
             android:id="@+id/inm_create_loc_lbl_reference"
+            android:labelFor="@id/inm_create_loc_ipt_reference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_reference" />
@@ -80,8 +84,69 @@
             android:id="@+id/inm_create_loc_ipt_reference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:id="@+id/inm_create_loc_lyt_geolocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/inm_create_loc_lyt_latitude"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/inm_create_loc_lbl_latitude"
+                    android:labelFor="@id/inm_create_loc_ipt_latitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inm_create_loc_lbl_latitude" />
+
+                <EditText
+                    android:id="@+id/inm_create_loc_ipt_latitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/inm_create_loc_lyt_longitude"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/inm_create_loc_lbl_longitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inm_create_loc_lbl_longitude" />
+
+                <EditText
+                    android:id="@+id/inm_create_loc_ipt_longitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/inm_create_loc_btn_geolocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_btn_geolocation" />
+
     </LinearLayout>
 </ScrollView>

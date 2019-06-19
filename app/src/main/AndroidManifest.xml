@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="pe.edu.pucp.a20190000.rebajatuscuentas">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".features.inmovable.list.view.InmovableListActivity"></activity>
-        <activity android:name=".features.inmovable.create.view.InmovableCreateActivity" />
-        <activity android:name=".features.home.HomeActivity" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".features.inmovable.list.view.InmovableListActivity"
+            android:label="@string/inm_list_txt_title"
+            android:parentActivityName=".features.home.HomeActivity" />
+        <activity
+            android:name=".features.inmovable.create.view.InmovableCreateActivity"
+            android:label="@string/inm_create_txt_title"
+            android:parentActivityName=".features.inmovable.list.view.InmovableListActivity" />
+        <activity
+            android:name=".features.home.HomeActivity"
+            android:label="@string/home_txt_title" />
         <activity android:name=".features.login.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

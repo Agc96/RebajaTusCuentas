@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:theme="@style/ToolbarTheme" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/inm_create_lyt_pager"

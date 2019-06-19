@@ -17,36 +17,51 @@
     escrito correctamente su nombre de usuario y contraseña.</string>
 
     <!-- Pantalla de bienvenida -->
-    <string name="home_txt_title">Pantalla de bienvenida</string>
-    <string name="home_tlb_menu">Menú principal</string>
-    <string name="home_menu_inmovable">Inmuebles</string>
+    <string name="home_txt_title">Menú principal</string>
+    <string name="home_menu_inmovables">Inmuebles</string>
+    <string name="home_menu_clients">Cartera de clientes</string>
+    <string name="home_menu_requests">Solicitudes de dinero</string>
     <string name="home_menu_options">Opciones de usuario</string>
-    <string name="home_menu_profile">Perfil de usuario</string>
+    <string name="home_menu_profile">Perfil</string>
     <string name="home_menu_logout">Cerrar sesión</string>
+    <string name="home_dlg_logout_msg">¿Desea cerrar sesión en este dispositivo?</string>
+
+    <!-- Listado de inmuebles -->
+    <string name="inm_list_txt_title">Listado de inmuebles</string>
 
     <!-- Creación de inmuebles -->
+    <string name="inm_create_txt_title">Nuevo inmueble</string>
     <string name="inm_create_tab_main">Principal</string>
     <string name="inm_create_tab_location">Ubicación</string>
     <string name="inm_create_tab_photos">Fotos</string>
-
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
     <string name="inm_create_main_lbl_price">Precio máximo</string>
-
     <!-- Creación de inmuebles: Datos de ubicación -->
     <string name="inm_create_loc_lbl_department">Departamento</string>
     <string name="inm_create_loc_lbl_province">Provincia</string>
     <string name="inm_create_loc_lbl_district">Distrito</string>
     <string name="inm_create_loc_lbl_location">Dirección</string>
     <string name="inm_create_loc_lbl_reference">Referencia(s)</string>
+    <string name="inm_create_loc_lbl_latitude">Latitud</string>
+    <string name="inm_create_loc_lbl_longitude">Longitud</string>
+    <string name="inm_create_loc_btn_geolocation">Activar geolocalización</string>
+    <!-- TODO: Creación de inmuebles: Fotos -->
 
     <!-- Mensajes de conexión al API REST -->
     <string name="api_dlg_error_msg_http">Ocurrió un error desconocido.\nCódigo de error: HTTP %d</string>
     <string name="api_dlg_error_msg_rest">El servicio otorgó un error desconocido.\nCódigo de error: %d</string>
     <string name="api_dlg_error_msg_empty">El servicio no otorgó respuesta.</string>
 
-    <!-- Toolbars y textos de -->
+    <!-- Mensajes de servicio de geolocalización (GPS) -->
+    <string name="gps_msg_unavailable">Este dispositivo no cuenta con un servicio de geolocalización.</string>
+    <string name="gps_msg_inactive">Por favor active el GPS en su dispositivo.</string>
+    <string name="gps_msg_permissions">Debe aceptar los permisos para que la aplicación pueda
+        obtener su ubicación en tiempo real.</string>
+
+    <!-- Barras superiores -->
     <string name="toolbar_txt_search">Buscar</string>
+    <string name="toolbar_txt_save">Guardar</string>
 
     <!-- TODO: Quitar esto -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
