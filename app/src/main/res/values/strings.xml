@@ -56,8 +56,8 @@
     <!-- Mensajes de servicio de geolocalización (GPS) -->
     <string name="gps_msg_unavailable">Este dispositivo no cuenta con un servicio de geolocalización.</string>
     <string name="gps_msg_inactive">Por favor active el GPS en su dispositivo.</string>
-    <string name="gps_msg_permissions">Debe aceptar los permisos para que la aplicación pueda
-        obtener su ubicación en tiempo real.</string>
+    <string name="gps_msg_permissions">No se aceptaron los permisos necesarios para poder registrar
+        su ubicación en tiempo real.</string>
 
     <!-- Barras superiores -->
     <string name="toolbar_txt_search">Buscar</string>

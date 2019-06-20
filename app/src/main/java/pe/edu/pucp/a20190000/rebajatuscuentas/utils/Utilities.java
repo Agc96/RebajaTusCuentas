@@ -7,10 +7,25 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import java.util.List;
+
 public final class Utilities {
 
     public static String formatString(Context context, @StringRes int stringId, Object... args) {
         return String.format(context.getString(stringId), args);
+    }
+
+    public static boolean isEmptyString(String string) {
+        return (string == null) || (string.isEmpty());
+    }
+    public static boolean isEmptyArray(Object[] array) {
+        return (array == null) || (array.length == 0);
+    }
+    public static boolean isEmptyArray(int[] array) {
+        return (array == null) || (array.length == 0);
+    }
+    public static <T> boolean isEmptyList(List<T> list) {
+        return (list == null) || (list.size() == 0);
     }
 
     public static void showMessage(Context context, String message) {

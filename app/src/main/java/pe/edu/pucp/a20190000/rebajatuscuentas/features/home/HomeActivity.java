@@ -54,8 +54,6 @@ public class HomeActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        // Cerrar el Navigation Drawer cuando se haga clic en un item
-                        mDrawerLayout.closeDrawers();
                         // Realizar acciones dependiendo del item presionado
                         switch (menuItem.getItemId()) {
                             case R.id.home_menu_inmovables:
@@ -74,6 +72,8 @@ public class HomeActivity extends AppCompatActivity {
                                 logout(null);
                                 break;
                         }
+                        // Cerrar el Navigation Drawer cuando se haga clic en un item
+                        mDrawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                     }
                 });
@@ -112,6 +112,8 @@ public class HomeActivity extends AppCompatActivity {
                 .show();
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Configurar acción del botón del menú
@@ -124,12 +126,12 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Si está abierto el NavigationView, cerrar el DrawerLayout
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            // Si está abierto el NavigationView, cerrar el DrawerLayout
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            return;
+        } else {
+            // Si está cerrado el NavigationView, salir de la aplicación
+            super.onBackPressed();
         }
-        // Si está cerrado el NavigationView, o después de haberse cerrado, salir de la aplicación
-        super.onBackPressed();
     }
 }

@@ -94,7 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/inm_create_loc_lyt_latitude"
@@ -105,9 +106,9 @@
 
                 <TextView
                     android:id="@+id/inm_create_loc_lbl_latitude"
-                    android:labelFor="@id/inm_create_loc_ipt_latitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:labelFor="@id/inm_create_loc_ipt_latitude"
                     android:text="@string/inm_create_loc_lbl_latitude" />
 
                 <EditText

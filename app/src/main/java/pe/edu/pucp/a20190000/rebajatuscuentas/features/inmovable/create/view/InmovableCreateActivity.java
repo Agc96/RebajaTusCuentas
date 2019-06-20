@@ -1,6 +1,7 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.view;
 
 import android.content.Context;
+import android.content.IntentSender;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,6 +11,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.EditText;
+
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.presenter.IInmovableCreatePresenter;
@@ -65,9 +78,12 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.d(TAG, "onRequestPermissionsResult se va al activity.");
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public void testResourceIds() {
+        EditText test = findViewById(R.id.inm_create_loc_ipt_latitude);
+        Log.d(TAG, String.valueOf(test));
+        EditText test2 = findViewById(R.id.inm_create_loc_ipt_longitude);
+        Log.d(TAG, String.valueOf(test2));
+        Log.d(TAG, "wow");
     }
 
     @Override
