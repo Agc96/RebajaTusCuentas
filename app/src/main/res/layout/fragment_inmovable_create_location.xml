@@ -114,55 +114,25 @@
             android:id="@+id/inm_create_loc_lyt_gps_data"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
             android:visibility="gone">
 
-            <LinearLayout
-                android:id="@+id/inm_create_loc_lyt_latitude"
+            <TextView
+                android:id="@+id/inm_create_loc_txt_latitude"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:text="@string/inm_create_loc_txt_latitude" />
 
-                <TextView
-                    android:id="@+id/inm_create_loc_lbl_latitude"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:labelFor="@id/inm_create_loc_ipt_latitude"
-                    android:text="@string/inm_create_loc_lbl_latitude" />
-
-                <EditText
-                    android:id="@+id/inm_create_loc_ipt_latitude"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:inputType="numberDecimal" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/inm_create_loc_lyt_longitude"
+            <TextView
+                android:id="@+id/inm_create_loc_txt_longitude"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:text="@string/inm_create_loc_txt_longitude" />
 
-                <TextView
-                    android:id="@+id/inm_create_loc_lbl_longitude"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/inm_create_loc_lbl_longitude" />
-
-                <EditText
-                    android:id="@+id/inm_create_loc_ipt_longitude"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:inputType="numberDecimal" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

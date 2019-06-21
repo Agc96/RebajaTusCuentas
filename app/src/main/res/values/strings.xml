@@ -49,10 +49,10 @@
     <string name="inm_create_loc_lbl_district">Distrito</string>
     <string name="inm_create_loc_lbl_location">Dirección</string>
     <string name="inm_create_loc_lbl_reference">Referencia(s)</string>
-    <string name="inm_create_loc_lbl_latitude">Latitud</string>
-    <string name="inm_create_loc_lbl_longitude">Longitud</string>
     <string name="inm_create_loc_btn_activate_gps">Activar GPS</string>
     <string name="inm_create_loc_btn_deactivate_gps">Desactivar GPS</string>
+    <string name="inm_create_loc_txt_latitude">Latitud: %.4f</string>
+    <string name="inm_create_loc_txt_longitude">Longitud: %.4f</string>
     <!-- TODO: Creación de inmuebles: Fotos -->
 
     <!-- Mensajes de conexión al API REST -->

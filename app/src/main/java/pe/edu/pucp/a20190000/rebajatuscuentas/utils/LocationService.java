@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class LocationUtility {
+public class LocationService {
 
     private final static String TAG = "RTC_INM_CREATE_LOC_SRV";
 
@@ -33,7 +33,7 @@ public class LocationUtility {
     private Location mLastLocation;
     private boolean mActive;
 
-    public LocationUtility(ILocationListener listener, boolean active, Location lastLocation) {
+    public LocationService(ILocationListener listener, boolean active, Location lastLocation) {
         mListener = listener;
         mActive = active;
         mLastLocation = lastLocation;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,16 +17,17 @@ import android.view.Menu;
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IPresenter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
-import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationUtility;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.TabAdapter;
 
 public class InmovableCreateActivity extends AppCompatActivity implements IInmovableCreateView,
-        LocationUtility.ILocationListener {
+        LocationService.ILocationListener {
 
     private final static String TAG = "RTC_INM_CREATE_ACT";
     private IInmovableCreatePresenter mPresenter;
-    private LocationUtility mService;
+    private LocationService mService;
     private ViewPager mViewPager;
+    private TabAdapter mTabAdapter;
     private Toolbar mToolbar;
 
     @Override
@@ -54,7 +56,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         // Configurar las pestañas a mostrarse
-        TabAdapter mTabAdapter = new TabAdapter(getSupportFragmentManager());
+        mTabAdapter = new TabAdapter(getSupportFragmentManager());
         mTabAdapter.addFragment(new InmovableCreateMainFragment(), getString(R.string.inm_create_tab_main));
         mTabAdapter.addFragment(new InmovableCreateLocationFragment(), getString(R.string.inm_create_tab_location));
         mTabAdapter.addFragment(new InmovableCreatePhotoFragment(), getString(R.string.inm_create_tab_photos));
@@ -74,7 +76,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
             location = savedInstanceState.getParcelable(Constants.EXTRA_LOCATION_DATA);
         }
         // Inicializamos el servicio
-        mService = new LocationUtility(this, active, location);
+        mService = new LocationService(this, active, location);
     }
 
     @Override
@@ -93,20 +95,16 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public void onUpdate(boolean isActive, Location lastLocation) {
-        // Actualizar el botón de
-        Log.d(TAG, String.format("Activo: %b", isActive));
-        // Actualizar el Presenter y el Fragment
-        if (lastLocation != null) {
-            // Obtener latitud y longitud
+    public void onUpdate(boolean active, Location lastLocation) {
+        // Actualizar el Fragment
+        InmovableCreateLocationFragment fragment = (InmovableCreateLocationFragment) mTabAdapter.getItem(1);
+        fragment.showInmovableLocationComponents(active, lastLocation);
+        // Actualizar el Presenter
+        if (active && lastLocation != null) {
             double latitude = lastLocation.getLatitude();
             double longitude = lastLocation.getLongitude();
-            // Actualizar el Presenter con estos valores
             mPresenter.setInmovableLocationExtra(latitude, longitude);
-            // Actualizar los cuadros de texto del Fragment con estos valores
-            Log.d(TAG, String.format("Lat: %f, Long: %f", latitude, longitude));
         }
-        // TODO
     }
 
     @Override
@@ -153,7 +151,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public LocationUtility getLocationUtility() {
+    public LocationService getLocationService() {
         return mService;
     }
 

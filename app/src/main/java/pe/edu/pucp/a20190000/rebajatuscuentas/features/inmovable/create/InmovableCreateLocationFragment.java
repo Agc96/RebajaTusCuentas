@@ -2,6 +2,7 @@ package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create;
 
 import android.Manifest;
 import android.content.Context;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Permissions;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
@@ -27,8 +31,9 @@ public class InmovableCreateLocationFragment extends Fragment {
     private EditText mDistrict;
     private EditText mLocation;
     private EditText mReference;
-    private EditText mLatitude;
-    private EditText mLongitude;
+    private LinearLayout mGpsLayout;
+    private TextView mLatitude;
+    private TextView mLongitude;
     private Button mActivateButton;
     private Button mDeactivateButton;
 
@@ -53,6 +58,9 @@ public class InmovableCreateLocationFragment extends Fragment {
         mDistrict = view.findViewById(R.id.inm_create_loc_ipt_district);
         mLocation = view.findViewById(R.id.inm_create_loc_ipt_location);
         mReference = view.findViewById(R.id.inm_create_loc_ipt_reference);
+        mGpsLayout = view.findViewById(R.id.inm_create_loc_lyt_gps_data);
+        mLatitude = view.findViewById(R.id.inm_create_loc_txt_latitude);
+        mLongitude = view.findViewById(R.id.inm_create_loc_txt_longitude);
         mActivateButton = view.findViewById(R.id.inm_create_loc_btn_activate_gps);
         mDeactivateButton = view.findViewById(R.id.inm_create_loc_btn_deactivate_gps);
         // Inicializar los componentes
@@ -72,8 +80,9 @@ public class InmovableCreateLocationFragment extends Fragment {
         mDeactivateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mView.getLocationUtility().isActive()) {
-                    mView.getLocationUtility().stopLocationUpdates();
+                LocationService service = mView.getLocationService();
+                if (service.isActive()) {
+                    service.stopLocationUpdates();
                 }
             }
         });
@@ -93,7 +102,7 @@ public class InmovableCreateLocationFragment extends Fragment {
                 Manifest.permission.ACCESS_FINE_LOCATION
         };
         if (Permissions.checkFromFragment(this, Constants.REQ_CODE_GPS_PERMISSIONS, permissions)) {
-            mView.getLocationUtility().startLocationUpdates();
+            mView.getLocationService().startLocationUpdates();
         }
     }
 
@@ -102,12 +111,36 @@ public class InmovableCreateLocationFragment extends Fragment {
         // Verificar si se aceptaron los permisos para el uso de GPS
         if (requestCode == Constants.REQ_CODE_GPS_PERMISSIONS) {
             if (Permissions.checkFromResults(permissions, grantResults)) {
-                mView.getLocationUtility().startLocationUpdates();
+                mView.getLocationService().startLocationUpdates();
             } else {
                 Utilities.showMessage(mView.getContext(), R.string.gps_msg_permissions);
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public void showInmovableLocationComponents(boolean active, Location lastLocation) {
+        if (active) {
+            // Mostrar el layout de los datos de geolocalización
+            mGpsLayout.setVisibility(View.VISIBLE);
+            // Mostrar y ocultar los botones
+            mActivateButton.setEnabled(false);
+            mDeactivateButton.setEnabled(true);
+            // Mostrar los datos de latitud y longitud
+            if (lastLocation != null) {
+                Context context = mView.getContext();
+                mLatitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_latitude),
+                        lastLocation.getLatitude()));
+                mLongitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_longitude),
+                        lastLocation.getLongitude()));
+            }
+        } else {
+            // Ocultar el layout de los datos de geolocalización
+            mGpsLayout.setVisibility(View.GONE);
+            // Mostrar y ocultar los botones
+            mActivateButton.setEnabled(true);
+            mDeactivateButton.setEnabled(false);
+        }
     }
 
     public void setInmovableLocationData() {
