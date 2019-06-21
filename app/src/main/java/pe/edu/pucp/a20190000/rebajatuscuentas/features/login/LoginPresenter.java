@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.ApiAdapter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.in.LoginInRO;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.out.UserOutRO;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view.ILoginView;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,33 +26,33 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     public void loginRest(final String username, final String password) {
-        LoginInRO loginInRO = new LoginInRO(ApiAdapter.APPLICATION_NAME, username, password);
+        LoginInRO loginInRO = new LoginInRO(Constants.API_APP_NAME, username, password);
         Call<UserOutRO> call = ApiAdapter.getInstance().login(loginInRO);
         call.enqueue(new Callback<UserOutRO>() {
             @Override
             public void onResponse(@NonNull Call<UserOutRO> call, @NonNull Response<UserOutRO> response) {
-                processUserResponse(response, username, password);
+                if (view != null) processUserResponse(response, username, password);
             }
             @Override
             public void onFailure(@NonNull Call<UserOutRO> call, @NonNull Throwable t) {
                 if (t instanceof UnknownHostException) {
                     // No se encontró la URL, preguntar si se desea iniciar sesión sin conexión
-                    view.askForLoginOffline();
+                    if (view != null) view.askForLoginOffline();
                 } else {
                     // Mostrar mensaje de error en el logcat y en un cuadro de diálogo
                     t.printStackTrace();
-                    view.showErrorDialog(t.getMessage());
+                    if (view != null) view.showErrorDialog(t.getMessage());
                 }
             }
         });
     }
 
     public boolean verifyLoginData(String username, String password) {
-        if (username == null || username.isEmpty()) {
+        if (Utilities.isEmpty(username)) {
             Utilities.showMessage(view.getContext(), R.string.login_msg_username_empty);
             return false;
         }
-        if (password == null || password.isEmpty()) {
+        if (Utilities.isEmpty(password)) {
             Utilities.showMessage(view.getContext(), R.string.login_msg_password_empty);
             return false;
         }

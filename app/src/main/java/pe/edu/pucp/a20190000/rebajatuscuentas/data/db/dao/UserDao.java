@@ -10,10 +10,10 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
 @Dao
 public interface UserDao {
 
-    @Query("SELECT * FROM USER WHERE USERNAME = :username LIMIT 1")
+    @Query("SELECT * FROM RTC_USER WHERE USERNAME = :username LIMIT 1")
     User findByUsername(String username);
 
-    @Query("SELECT * FROM USER WHERE USER_ID = :userId LIMIT 1")
+    @Query("SELECT * FROM RTC_USER WHERE USER_ID = :userId LIMIT 1")
     User findById(int userId);
 
     @Insert

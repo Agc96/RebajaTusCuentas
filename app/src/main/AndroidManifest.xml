@@ -17,17 +17,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".features.inmovable.list.view.InmovableListActivity"
+            android:name=".features.inmovable.list.InmovableListActivity"
             android:label="@string/inm_list_txt_title"
             android:parentActivityName=".features.home.HomeActivity" />
         <activity
-            android:name=".features.inmovable.create.view.InmovableCreateActivity"
+            android:name=".features.inmovable.create.InmovableCreateActivity"
             android:label="@string/inm_create_txt_title"
-            android:parentActivityName=".features.inmovable.list.view.InmovableListActivity" />
+            android:parentActivityName=".features.inmovable.list.InmovableListActivity" />
         <activity
             android:name=".features.home.HomeActivity"
             android:label="@string/home_txt_title" />
-        <activity android:name=".features.login.view.LoginActivity">
+        <activity android:name=".features.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

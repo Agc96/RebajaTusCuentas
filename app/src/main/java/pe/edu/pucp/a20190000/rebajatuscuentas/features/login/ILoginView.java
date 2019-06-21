@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IView;
 

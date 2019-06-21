@@ -4,7 +4,7 @@
     android:id="@+id/inm_create_loc_lyt_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.inmovable.create.view.InmovableCreateLocationFragment">
+    tools:context=".features.inmovable.create.InmovableCreateLocationFragment">
 
     <LinearLayout
         android:id="@+id/inm_create_loc_lyt_main"
@@ -90,10 +90,32 @@
             android:inputType="textMultiLine" />
 
         <LinearLayout
-            android:id="@+id/inm_create_loc_lyt_geolocation"
+            android:id="@+id/inm_create_loc_lyt_gps_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/inm_create_loc_btn_activate_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inm_create_loc_btn_activate_gps" />
+
+            <Button
+                android:id="@+id/inm_create_loc_btn_deactivate_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inm_create_loc_btn_deactivate_gps" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/inm_create_loc_lyt_gps_data"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             android:visibility="gone">
 
@@ -142,12 +164,6 @@
                     android:inputType="numberDecimal" />
             </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/inm_create_loc_btn_geolocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/inm_create_loc_btn_geolocation" />
 
     </LinearLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,16 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IPresenter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.home.HomeActivity;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter.ILoginPresenter;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.presenter.LoginPresenter;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private final static String TAG = "RTC_LOGIN_ACT";
-    public final static String LOGIN_EXTRA_FULLNAME = "LOGIN_EXTRA_FULLNAME";
-    public final static String LOGIN_EXTRA_EMAIL = "LOGIN_EXTRA_EMAIL";
 
     private EditText mUsername;
     private EditText mPassword;
@@ -82,11 +80,16 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     public void goToHomePage(String fullName, String email) {
         // Iniciar la actividad principal
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(LOGIN_EXTRA_FULLNAME, fullName);
-        intent.putExtra(LOGIN_EXTRA_EMAIL, email);
+        intent.putExtra(Constants.EXTRA_USER_FULLNAME, fullName);
+        intent.putExtra(Constants.EXTRA_USER_EMAIL, email);
         startActivity(intent);
         // Cerrar esta actividad
         finish();
+    }
+
+    @Override
+    public IPresenter getPresenter() {
+        return mPresenter;
     }
 
     @Override

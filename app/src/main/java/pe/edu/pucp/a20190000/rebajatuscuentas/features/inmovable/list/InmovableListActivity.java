@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list.view;
+package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.View;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.view.InmovableCreateActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.InmovableCreateActivity;
 
 public class InmovableListActivity extends AppCompatActivity {
 

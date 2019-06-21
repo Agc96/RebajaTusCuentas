@@ -1,4 +1,4 @@
-package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.presenter;
+package pe.edu.pucp.a20190000.rebajatuscuentas.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,12 +6,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
+public class TabAdapter extends FragmentPagerAdapter {
 
     private ArrayList<Fragment> mFragmentList;
     private ArrayList<String> mFragmentTitles;
 
-    public InmovableCreateTabAdapter(FragmentManager fm) {
+    public TabAdapter(FragmentManager fm) {
         super(fm);
         mFragmentList = new ArrayList<>();
         mFragmentTitles = new ArrayList<>();

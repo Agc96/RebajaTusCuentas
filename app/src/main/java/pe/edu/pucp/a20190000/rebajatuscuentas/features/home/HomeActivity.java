@@ -15,12 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list.view.InmovableListActivity;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.view.LoginActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list.InmovableListActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.LoginActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final static String TAG = "RTC_HOME_VIEW";
+    private final static String TAG = "RTC_HOME_ACT";
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
@@ -34,11 +34,10 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.home_lyt_drawer);
         mNavigationView = findViewById(R.id.home_lyt_nav_view);
 
-        setUpToolbar();
-        setUpSidebar();
+        initializeComponents();
     }
 
-    private void setUpToolbar() {
+    private void initializeComponents() {
         // Configurar la barra de la aplicación
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -47,36 +46,8 @@ public class HomeActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_toolbar_menu);
         }
-    }
-
-    private void setUpSidebar() {
-        mNavigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        // Realizar acciones dependiendo del item presionado
-                        switch (menuItem.getItemId()) {
-                            case R.id.home_menu_inmovables:
-                                goToInmovable(null);
-                                break;
-                            case R.id.home_menu_clients:
-                                goToClients(null);
-                                break;
-                            case R.id.home_menu_requests:
-                                goToRequests(null);
-                                break;
-                            case R.id.home_menu_profile:
-                                goToProfile(null);
-                                break;
-                            case R.id.home_menu_logout:
-                                logout(null);
-                                break;
-                        }
-                        // Cerrar el Navigation Drawer cuando se haga clic en un item
-                        mDrawerLayout.closeDrawer(GravityCompat.START);
-                        return true;
-                    }
-                });
+        // Configurar el Navigation View
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     public void goToInmovable(View v) {
@@ -112,7 +83,30 @@ public class HomeActivity extends AppCompatActivity {
                 .show();
     }
 
-
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        // Realizar acciones dependiendo del item presionado
+        switch (menuItem.getItemId()) {
+            case R.id.home_menu_inmovables:
+                goToInmovable(null);
+                break;
+            case R.id.home_menu_clients:
+                goToClients(null);
+                break;
+            case R.id.home_menu_requests:
+                goToRequests(null);
+                break;
+            case R.id.home_menu_profile:
+                goToProfile(null);
+                break;
+            case R.id.home_menu_logout:
+                logout(null);
+                break;
+        }
+        // Cerrar el Navigation Drawer cuando se haga clic en un item
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
