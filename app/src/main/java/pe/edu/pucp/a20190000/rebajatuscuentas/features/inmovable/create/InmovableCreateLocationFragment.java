@@ -6,7 +6,9 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ public class InmovableCreateLocationFragment extends Fragment {
     private TextView mLongitude;
     private Button mActivateButton;
     private Button mDeactivateButton;
+    private boolean mInitialized = false;
 
     @Override
     public void onAttach(Context context) {
@@ -45,13 +48,25 @@ public class InmovableCreateLocationFragment extends Fragment {
         } else {
             throw new RuntimeException("El Activity debe implementar la interfaz IInmovableCreateView.");
         }
+        Log.d(TAG, "onattach");
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onactivitycreated");
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflar el layout para este fragment
-        View view = inflater.inflate(R.layout.fragment_inmovable_create_location, container, false);
+        Log.d(TAG, "Fragment onCreateView");
+        return inflater.inflate(R.layout.fragment_inmovable_create_location, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         // Obtener los componentes
         mDepartment = view.findViewById(R.id.inm_create_loc_ipt_department);
         mProvince = view.findViewById(R.id.inm_create_loc_ipt_province);
@@ -65,7 +80,8 @@ public class InmovableCreateLocationFragment extends Fragment {
         mDeactivateButton = view.findViewById(R.id.inm_create_loc_btn_deactivate_gps);
         // Inicializar los componentes
         initializeComponents();
-        return view;
+        mInitialized = true;
+        Log.d(TAG, "Fragment onViewCreated");
     }
 
     private void initializeComponents() {
@@ -120,10 +136,16 @@ public class InmovableCreateLocationFragment extends Fragment {
     }
 
     public void showInmovableLocationComponents(boolean active, Location lastLocation) {
+        // Asegurar de que se hayan inicializado los componentes
+        if (!mInitialized) {
+            Log.w(TAG, "Todavía no se han inicializado los componentes...");
+            return;
+        }
+        // Actualizar los componentes dependiendo si está activo o no el servicio
         if (active) {
             // Mostrar el layout de los datos de geolocalización
             mGpsLayout.setVisibility(View.VISIBLE);
-            // Mostrar y ocultar los botones
+            // Mostrar y ocultar los botones dependiendo de
             mActivateButton.setEnabled(false);
             mDeactivateButton.setEnabled(true);
             // Mostrar los datos de latitud y longitud
@@ -131,8 +153,8 @@ public class InmovableCreateLocationFragment extends Fragment {
                 Context context = mView.getContext();
                 mLatitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_latitude),
                         lastLocation.getLatitude()));
-                mLongitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_longitude),
-                        lastLocation.getLongitude()));
+                mLongitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_latitude),
+                        lastLocation.getLatitude()));
             }
         } else {
             // Ocultar el layout de los datos de geolocalización
@@ -153,5 +175,11 @@ public class InmovableCreateLocationFragment extends Fragment {
         String reference = mReference.getText().toString();
         presenter.setInmovableLocationData(department, province, district, location, reference);
         // TODO: Ver si desde aquí actualizo los valores de latitud y longitud
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "Fragment onDestroy");
     }
 }

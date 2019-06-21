@@ -21,7 +21,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.TabAdapter;
 
 public class InmovableCreateActivity extends AppCompatActivity implements IInmovableCreateView,
-        LocationService.ILocationListener {
+        LocationService.OnUpdateLocationListener {
 
     private final static String TAG = "RTC_INM_CREATE_ACT";
     private IInmovableCreatePresenter mPresenter;
@@ -75,8 +75,9 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
             active = savedInstanceState.getBoolean(Constants.EXTRA_LOCATION_ACTIVE);
             location = savedInstanceState.getParcelable(Constants.EXTRA_LOCATION_DATA);
         }
-        // Inicializamos el servicio
+        // Inicializamos el servicio y actualizamos los componentes
         mService = new LocationService(this, active, location);
+        // La actualización del valor ocurrirá en onResume().
     }
 
     @Override
@@ -95,7 +96,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public void onUpdate(boolean active, Location lastLocation) {
+    public void onUpdateLocation(boolean active, Location lastLocation) {
         // Actualizar el Fragment
         InmovableCreateLocationFragment fragment = (InmovableCreateLocationFragment) mTabAdapter.getItem(1);
         fragment.showInmovableLocationComponents(active, lastLocation);
@@ -109,9 +110,9 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         outState.putBoolean(Constants.EXTRA_LOCATION_ACTIVE, mService.isActive());
         outState.putParcelable(Constants.EXTRA_LOCATION_DATA, mService.getLastLocation());
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -124,6 +125,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     protected void onResume() {
         super.onResume();
         if (mService.isActive()) {
+            Log.d(TAG, "onResume start");
             mService.startLocationUpdates();
         }
     }
@@ -157,8 +159,8 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         mService.onDestroy();
         mPresenter.onDestroy();
-        super.onDestroy();
     }
 }

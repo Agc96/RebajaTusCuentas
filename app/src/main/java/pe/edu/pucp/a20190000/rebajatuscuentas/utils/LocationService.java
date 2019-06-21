@@ -21,10 +21,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 public class LocationService {
-
     private final static String TAG = "RTC_INM_CREATE_LOC_SRV";
-
-    private ILocationListener mListener;
+    private OnUpdateLocationListener mListener;
     private FusedLocationProviderClient mLocationClient;
     private SettingsClient mSettingsClient;
     private LocationRequest mLocationRequest;
@@ -33,7 +31,7 @@ public class LocationService {
     private Location mLastLocation;
     private boolean mActive;
 
-    public LocationService(ILocationListener listener, boolean active, Location lastLocation) {
+    public LocationService(OnUpdateLocationListener listener, boolean active, Location lastLocation) {
         mListener = listener;
         mActive = active;
         mLastLocation = lastLocation;
@@ -47,7 +45,7 @@ public class LocationService {
                 super.onLocationResult(locationResult);
                 // Obtener la ubicación actual
                 mLastLocation = locationResult.getLastLocation();
-                mListener.onUpdate(mActive, mLastLocation);
+                mListener.onUpdateLocation(mActive, mLastLocation);
             }
         };
         // Crear la petición para la obtención de la ubicación actual
@@ -75,7 +73,7 @@ public class LocationService {
                         try {
                             mLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback,
                                     null);
-                            mListener.onUpdate(mActive, mLastLocation);
+                            mListener.onUpdateLocation(mActive, mLastLocation);
                         } catch (SecurityException ex) {
                             // No debería pasar. Recordar que este método debe ser llamado después de
                             // haber aprobado los permisos necesarios para usar el dispositivo GPS.
@@ -118,7 +116,11 @@ public class LocationService {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         mActive = false;
-                        mListener.onUpdate(mActive, mLastLocation);
+                        if (mListener != null) {
+                            mListener.onUpdateLocation(mActive, mLastLocation);
+                        } else {
+                            Log.d(TAG, "listener = null...");
+                        }
                     }
                 });
     }
@@ -142,13 +144,14 @@ public class LocationService {
      */
     public void onDestroy() {
         mListener = null;
+        Log.d(TAG, "service onDestroy");
     }
 
     /**
      * Interfaz para la comunicación entre el listener (generalmente un Activity) y el servicio.
      */
-    public interface ILocationListener {
+    public interface OnUpdateLocationListener {
         Activity getActivity();
-        void onUpdate(boolean active, Location location);
+        void onUpdateLocation(boolean active, Location location);
     }
 }
