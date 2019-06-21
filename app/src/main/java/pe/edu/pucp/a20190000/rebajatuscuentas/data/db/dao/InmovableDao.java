@@ -16,7 +16,7 @@ public interface InmovableDao {
     List<InmovableMainData> listAllMainData();
 
     @Insert
-    void insert(Inmovable inmovable);
+    long insert(Inmovable inmovable);
 
     @Delete
     void delete(Inmovable inmovable);

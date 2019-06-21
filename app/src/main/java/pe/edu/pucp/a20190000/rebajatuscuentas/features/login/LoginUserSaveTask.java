@@ -10,7 +10,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.out.UserOutRO;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.AppDatabase;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
 
-public class UserSaveTask extends AsyncTask<Void, Void, Boolean> {
+public class LoginUserSaveTask extends AsyncTask<Void, Void, Boolean> {
 
     private final static String TAG = "RTC_LOGIN_SAVETASK";
     private WeakReference<ILoginView> view;
@@ -18,7 +18,7 @@ public class UserSaveTask extends AsyncTask<Void, Void, Boolean> {
     private String username;
     private String password;
 
-    protected UserSaveTask(ILoginView view, String username, String password, UserOutRO userOutRO) {
+    protected LoginUserSaveTask(ILoginView view, String username, String password, UserOutRO userOutRO) {
         this.view = new WeakReference<>(view);
         this.username = username;
         this.password = password;

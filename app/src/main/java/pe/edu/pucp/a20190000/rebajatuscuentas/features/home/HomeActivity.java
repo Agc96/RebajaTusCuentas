@@ -11,12 +11,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list.InmovableListActivity;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.LoginActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,6 +38,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView = findViewById(R.id.home_lyt_nav_view);
 
         initializeComponents();
+        showUserDetails();
     }
 
     private void initializeComponents() {
@@ -48,6 +52,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         // Configurar el Navigation View
         mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void showUserDetails() {
+        Bundle extras = getIntent().getExtras();
+        View navigationHeader = mNavigationView.getHeaderView(0);
+        if (extras != null && navigationHeader != null) {
+            // Obtener y mostrar el nombre completo del usuario
+            if (extras.keySet().contains(Constants.EXTRA_USER_FULLNAME)) {
+                TextView fullNameView = navigationHeader.findViewById(R.id.home_txt_fullname);
+                fullNameView.setText(extras.getString(Constants.EXTRA_USER_FULLNAME));
+            }
+            // Obtener y mostrar el correo electrónico del usuario
+            if (extras.keySet().contains(Constants.EXTRA_USER_EMAIL)) {
+                TextView emailView =  navigationHeader.findViewById(R.id.home_txt_email);
+                emailView.setText(extras.getString(Constants.EXTRA_USER_EMAIL));
+            }
+        }
     }
 
     public void goToInmovable(View v) {

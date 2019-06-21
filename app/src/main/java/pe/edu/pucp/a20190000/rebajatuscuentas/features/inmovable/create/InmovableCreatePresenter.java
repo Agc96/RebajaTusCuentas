@@ -18,7 +18,7 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
     }
 
     @Override
-    public void setInmovableMainData(String name, double price) {
+    public void setInmovableMainData(String name, Double price) {
         inmovable.setName(name);
         inmovable.setPrice(price);
     }
@@ -34,7 +34,7 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
     }
 
     @Override
-    public void setInmovableLocationExtra(double latitude, double longitude) {
+    public void setInmovableLocationExtra(Double latitude, Double longitude) {
         inmovable.setLatitude(latitude);
         inmovable.setLongitude(longitude);
     }
@@ -48,12 +48,17 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
     public void saveInmovable() {
         if (validateData()) {
             Log.d(TAG, "Guardando inmueble en base de datos...");
+            new InmovableCreateSaveTask(view, inmovable).execute();
         }
     }
 
     private boolean validateData() {
         if (Utilities.isEmpty(inmovable.getName())) {
             Utilities.showMessage(view.getContext(), R.string.inm_create_msg_name_empty);
+            return false;
+        }
+        if (inmovable.getPrice() == null) {
+            Utilities.showMessage(view.getContext(), R.string.inm_create_msg_price_empty);
             return false;
         }
         if (inmovable.getPrice() <= 0) {

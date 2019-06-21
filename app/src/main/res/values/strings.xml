@@ -18,6 +18,9 @@
 
     <!-- Pantalla de bienvenida -->
     <string name="home_txt_title">Menú principal</string>
+    <string name="home_img_profile">Foto de perfil</string>
+    <string name="home_txt_fullname">Nombre completo</string>
+    <string name="home_txt_email">Correo electrónico</string>
     <string name="home_menu_inmovables">Inmuebles</string>
     <string name="home_menu_clients">Cartera de clientes</string>
     <string name="home_menu_requests">Solicitudes de dinero</string>
@@ -35,11 +38,15 @@
     <string name="inm_create_tab_location">Ubicación</string>
     <string name="inm_create_tab_photos">Fotos</string>
     <string name="inm_create_msg_name_empty">Ingrese el nombre del inmueble.</string>
+    <string name="inm_create_msg_price_empty">Ingrese el precio máximo del inmueble.</string>
     <string name="inm_create_msg_price_invalid">El precio máximo del inmueble debe ser positivo.</string>
     <string name="inm_create_msg_department_empty">Ingrese el departamento del inmueble.</string>
     <string name="inm_create_msg_province_empty">Ingrese la dirección del inmueble.</string>
     <string name="inm_create_msg_district_empty">Ingrese el distrito del inmueble.</string>
     <string name="inm_create_msg_location_empty">Ingrese la dirección del inmueble.</string>
+    <string name="inm_create_msg_failure">Hubo un error desconocido al intentar guardar el inmueble.
+        Por favor inténtelo nuevamente.</string>
+    <string name="inm_create_msg_success">Inmueble guardado exitosamente.</string>
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
     <string name="inm_create_main_lbl_price">Precio máximo</string>
@@ -51,9 +58,13 @@
     <string name="inm_create_loc_lbl_reference">Referencia(s)</string>
     <string name="inm_create_loc_btn_activate_gps">Activar GPS</string>
     <string name="inm_create_loc_btn_deactivate_gps">Desactivar GPS</string>
+    <string name="inm_create_loc_txt_latitude_default">Latitud: Desconocida</string>
     <string name="inm_create_loc_txt_latitude">Latitud: %.4f</string>
+    <string name="inm_create_loc_txt_longitude_default">Longitud: Desconocida</string>
     <string name="inm_create_loc_txt_longitude">Longitud: %.4f</string>
-    <!-- TODO: Creación de inmuebles: Fotos -->
+    <!-- Creación de inmuebles: Fotos -->
+    <string name="inm_create_photo_btn_take">Tomar foto</string>
+    <string name="inm_create_photo_btn_delete">Borrar foto</string>
 
     <!-- Mensajes de conexión al API REST -->
     <string name="api_dlg_error_msg_http">Ocurrió un error desconocido.\nCódigo de error: HTTP %d</string>
@@ -69,7 +80,4 @@
     <!-- Botones de la barra superior (Toolbar) -->
     <string name="toolbar_txt_search">Buscar</string>
     <string name="toolbar_txt_save">Guardar</string>
-
-    <!-- TODO: Quitar esto -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

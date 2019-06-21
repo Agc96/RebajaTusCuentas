@@ -5,4 +5,5 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
 
 public interface IInmovableCreateView extends IView {
     LocationService getLocationService();
+    void onInmovableSaveResult(boolean saved);
 }

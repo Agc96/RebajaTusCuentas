@@ -10,7 +10,6 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.ApiAdapter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.in.LoginInRO;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.api.out.UserOutRO;
-import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +25,7 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     public void loginRest(final String username, final String password) {
-        LoginInRO loginInRO = new LoginInRO(Constants.API_APP_NAME, username, password);
+        LoginInRO loginInRO = new LoginInRO(ApiAdapter.APPLICATION_NAME, username, password);
         Call<UserOutRO> call = ApiAdapter.getInstance().login(loginInRO);
         call.enqueue(new Callback<UserOutRO>() {
             @Override
@@ -69,7 +68,7 @@ public class LoginPresenter implements ILoginPresenter {
             // Obtener el objeto JSON
             UserOutRO userOutRO = result.first;
             // Guardar los datos del usuario en la base de datos
-            new UserSaveTask(view, username, password, userOutRO).execute();
+            new LoginUserSaveTask(view, username, password, userOutRO).execute();
             // Ir a la pantalla de bienvenida
             view.goToHomePage(userOutRO.getFullName(), userOutRO.getEmail());
         }
@@ -105,7 +104,7 @@ public class LoginPresenter implements ILoginPresenter {
     @Override
     public void loginOffline(String username, String password) {
         if (verifyLoginData(username, password)) {
-            new UserLoginTask(view, username, password).execute();
+            new LoginUserLoginTask(view, username, password).execute();
         }
     }
 

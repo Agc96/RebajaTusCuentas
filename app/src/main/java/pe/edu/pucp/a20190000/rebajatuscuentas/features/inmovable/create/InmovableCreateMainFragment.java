@@ -8,16 +8,52 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
 public class InmovableCreateMainFragment extends Fragment {
-
     private static final String TAG = "RTC_INM_CREATE_MAIN_FRG";
+    private IInmovableCreateView mView;
+    private EditText mName;
+    private EditText mPrice;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof IInmovableCreateView) {
+            mView = (IInmovableCreateView) context;
+        } else {
+            throw new RuntimeException("El Activity debe implementar la interfaz IInmovableCreateView.");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_inmovable_create_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_inmovable_create_main, container, false);
+        mName = view.findViewById(R.id.inm_create_main_ipt_name);
+        mPrice = view.findViewById(R.id.inm_create_main_ipt_price);
+        return view;
+    }
+
+    public void setInmovableMainData() {
+        // Obtener los datos principales
+        String name = mName.getText().toString();
+        Double price = null;
+        try {
+            price = Double.parseDouble(mPrice.getText().toString());
+        } catch (NumberFormatException ex) {
+            // Nada por ahora, esto será validado en el presentador.
+        }
+        // Actualizar los datos principales en el presentador
+        IInmovableCreatePresenter presenter = (IInmovableCreatePresenter) mView.getPresenter();
+        presenter.setInmovableMainData(name, price);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mView = null;
     }
 }

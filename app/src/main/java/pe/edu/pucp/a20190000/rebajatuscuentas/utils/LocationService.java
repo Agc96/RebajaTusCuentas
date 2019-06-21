@@ -22,6 +22,9 @@ import com.google.android.gms.tasks.Task;
 
 public class LocationService {
     private final static String TAG = "RTC_INM_CREATE_LOC_SRV";
+    private final static int LOCATION_INTERVAL = 10000; // milisegundos (= 10 segundos)
+    private final static int LOCATION_FAST_INTERVAL = 5000; // milisegundos (= 5 segundos)
+
     private OnUpdateLocationListener mListener;
     private FusedLocationProviderClient mLocationClient;
     private SettingsClient mSettingsClient;
@@ -44,14 +47,17 @@ public class LocationService {
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 // Obtener la ubicación actual
+                Log.d(TAG, "Obtenida información del dispositivo GPS.");
                 mLastLocation = locationResult.getLastLocation();
-                mListener.onUpdateLocation(mActive, mLastLocation);
+                if (mListener != null) {
+                    mListener.onUpdateLocation(mActive, mLastLocation);
+                }
             }
         };
         // Crear la petición para la obtención de la ubicación actual
         mLocationRequest = new LocationRequest()
-                .setInterval(Constants.LOCATION_INTERVAL)
-                .setFastestInterval(Constants.LOCATION_FAST_INTERVAL)
+                .setInterval(LOCATION_INTERVAL)
+                .setFastestInterval(LOCATION_FAST_INTERVAL)
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         // Crear la petición para activar el sensor de ubicación (GPS)
         mSettingsRequest = new LocationSettingsRequest.Builder()
@@ -144,7 +150,6 @@ public class LocationService {
      */
     public void onDestroy() {
         mListener = null;
-        Log.d(TAG, "service onDestroy");
     }
 
     /**

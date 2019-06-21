@@ -8,14 +8,6 @@ import android.view.ViewGroup;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link InmovableCreatePhotoFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link InmovableCreatePhotoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class InmovableCreatePhotoFragment extends Fragment {
 
     @Override

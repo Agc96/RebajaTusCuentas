@@ -24,7 +24,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ToolbarTheme" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <Button
             android:id="@+id/home_btn_inmovable"
@@ -57,6 +57,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/menu_home"
-        app:headerLayout="@layout/header_home" />
+        app:headerLayout="@layout/content_home_header" />
 
 </android.support.v4.widget.DrawerLayout>

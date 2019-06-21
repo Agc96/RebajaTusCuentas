@@ -11,14 +11,14 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.AppDatabase;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
-public class UserLoginTask extends AsyncTask<Void, Void, User> {
+public class LoginUserLoginTask extends AsyncTask<Void, Void, User> {
 
     private final static String TAG = "RTC_LOGIN_LOGINTASK";
     private WeakReference<ILoginView> view;
     private String username;
     private String password;
 
-    protected UserLoginTask(ILoginView view, String username, String password) {
+    protected LoginUserLoginTask(ILoginView view, String username, String password) {
         this.view = new WeakReference<>(view);
         this.username = username;
         this.password = password;
