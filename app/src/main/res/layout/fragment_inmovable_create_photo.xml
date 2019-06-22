@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/inm_create_photo_btn_take" />
-
         <Button
             android:id="@+id/inm_create_photo_btn_delete"
             android:layout_width="0dp"
@@ -32,7 +31,8 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/inm_create_photo_img"
+        android:id="@+id/inm_create_photo_img_main"
+        android:contentDescription="@string/inm_create_photo_img_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

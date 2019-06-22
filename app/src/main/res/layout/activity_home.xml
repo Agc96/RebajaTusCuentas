@@ -38,12 +38,36 @@
             android:text="@string/home_menu_inmovables" />
 
         <Button
-            android:id="@+id/home_btn_logout"
+            android:id="@+id/home_btn_clients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:onClick="goToClients"
+            android:text="@string/home_menu_clients" />
+
+        <Button
+            android:id="@+id/home_btn_requests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:onClick="goToRequests"
+            android:text="@string/home_menu_requests" />
+
+        <Button
+            android:id="@+id/home_btn_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="goToProfile"
+            android:text="@string/home_menu_profile" />
+
+        <Button
+            android:id="@+id/home_btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:onClick="logout"
             android:text="@string/home_menu_logout" />
 

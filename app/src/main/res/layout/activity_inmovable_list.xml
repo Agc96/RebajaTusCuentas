@@ -19,7 +19,8 @@
     <FrameLayout
         android:id="@+id/inm_list_lyt_frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inm_list_lyt_toolbar">
 
         <android.support.v7.widget.RecyclerView
@@ -39,6 +40,6 @@
         android:onClick="goToCreate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_button_add" />
 
 </android.support.constraint.ConstraintLayout>

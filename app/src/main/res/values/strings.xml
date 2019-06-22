@@ -17,7 +17,7 @@
     escrito correctamente su nombre de usuario y contraseña.</string>
 
     <!-- Pantalla de bienvenida -->
-    <string name="home_txt_title">Menú principal</string>
+    <string name="home_txt_title">Pantalla de bienvenida</string>
     <string name="home_img_profile">Foto de perfil</string>
     <string name="home_txt_fullname">Nombre completo</string>
     <string name="home_txt_email">Correo electrónico</string>
@@ -47,9 +47,11 @@
     <string name="inm_create_msg_failure">Hubo un error desconocido al intentar guardar el inmueble.
         Por favor inténtelo nuevamente.</string>
     <string name="inm_create_msg_success">Inmueble guardado exitosamente.</string>
+
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
     <string name="inm_create_main_lbl_price">Precio máximo</string>
+
     <!-- Creación de inmuebles: Datos de ubicación -->
     <string name="inm_create_loc_lbl_department">Departamento</string>
     <string name="inm_create_loc_lbl_province">Provincia</string>
@@ -62,9 +64,11 @@
     <string name="inm_create_loc_txt_latitude">Latitud: %.4f</string>
     <string name="inm_create_loc_txt_longitude_default">Longitud: Desconocida</string>
     <string name="inm_create_loc_txt_longitude">Longitud: %.4f</string>
+
     <!-- Creación de inmuebles: Fotos -->
     <string name="inm_create_photo_btn_take">Tomar foto</string>
     <string name="inm_create_photo_btn_delete">Borrar foto</string>
+    <string name="inm_create_photo_img_main">Foto principal del inmueble</string>
 
     <!-- Mensajes de conexión al API REST -->
     <string name="api_dlg_error_msg_http">Ocurrió un error desconocido.\nCódigo de error: HTTP %d</string>

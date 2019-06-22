@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/inm_create_main_lbl_name" />
-
     <EditText
         android:id="@+id/inm_create_main_ipt_name"
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/inm_create_main_lbl_price" />
-
     <EditText
         android:id="@+id/inm_create_main_ipt_price"
         android:layout_width="match_parent"

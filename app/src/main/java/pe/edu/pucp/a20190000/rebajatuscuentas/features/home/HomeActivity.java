@@ -17,8 +17,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.clients.list.ClientListActivity;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list.InmovableListActivity;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.login.LoginActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.profile.ProfileActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.requests.list.RequestListActivity;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,15 +80,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void goToClients(View v) {
-        // TODO: Ir al Activity de listado de cartera de clientes
+        Intent intent = new Intent(this, ClientListActivity.class);
+        startActivity(intent);
     }
 
     public void goToRequests(View v) {
-        // TODO: Ir al Activity de listado de solicitudes de dinero
+        Intent intent = new Intent(this, RequestListActivity.class);
+        startActivity(intent);
     }
 
     public void goToProfile(View v) {
-        // TODO: Ir al Activity de configuración del perfil de usuario
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     public void logout(View v) {

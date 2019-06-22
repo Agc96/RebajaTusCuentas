@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_department" />
-
         <EditText
             android:id="@+id/inm_create_loc_ipt_department"
             android:layout_width="match_parent"
@@ -34,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_province" />
-
         <EditText
             android:id="@+id/inm_create_loc_ipt_province"
             android:layout_width="match_parent"
@@ -49,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_district" />
-
         <EditText
             android:id="@+id/inm_create_loc_ipt_district"
             android:layout_width="match_parent"
@@ -60,10 +57,10 @@
 
         <TextView
             android:id="@+id/inm_create_loc_lbl_location"
+            android:labelFor="@id/inm_create_loc_ipt_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_location" />
-
         <EditText
             android:id="@+id/inm_create_loc_ipt_location"
             android:layout_width="match_parent"
@@ -79,7 +76,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inm_create_loc_lbl_reference" />
-
         <EditText
             android:id="@+id/inm_create_loc_ipt_reference"
             android:layout_width="match_parent"
@@ -103,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inm_create_loc_txt_latitude_default" />
-
             <TextView
                 android:id="@+id/inm_create_loc_txt_longitude"
                 android:layout_width="0dp"
@@ -125,7 +120,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inm_create_loc_btn_activate_gps" />
-
             <Button
                 android:id="@+id/inm_create_loc_btn_deactivate_gps"
                 android:layout_width="0dp"
