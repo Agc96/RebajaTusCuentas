@@ -102,5 +102,4 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         mPresenter.onDestroy();
         super.onDestroy();
     }
-
 }

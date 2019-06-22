@@ -81,6 +81,9 @@
     <string name="gps_msg_permissions">No se aceptaron los permisos necesarios para poder registrar
         su ubicación en tiempo real.</string>
 
+    <!-- Mensajes de conexión a la cámara del dispositivo móvil -->
+    <string name="camera_msg_unavailable">Este dispositivo no cuenta con cámara.</string>
+
     <!-- Botones de la barra superior (Toolbar) -->
     <string name="toolbar_txt_search">Buscar</string>
     <string name="toolbar_txt_save">Guardar</string>

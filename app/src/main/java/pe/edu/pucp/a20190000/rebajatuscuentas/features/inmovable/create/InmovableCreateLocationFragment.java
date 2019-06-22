@@ -48,6 +48,7 @@ public class InmovableCreateLocationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflar el layout de este Fragment
         View view = inflater.inflate(R.layout.fragment_inmovable_create_location, container, false);
         // Obtener los componentes
         mDepartment = view.findViewById(R.id.inm_create_loc_ipt_department);
