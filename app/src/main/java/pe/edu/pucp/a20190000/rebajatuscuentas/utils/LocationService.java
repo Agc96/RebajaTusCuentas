@@ -51,6 +51,8 @@ public class LocationService {
                 mLastLocation = locationResult.getLastLocation();
                 if (mListener != null) {
                     mListener.onUpdateLocation(mActive, mLastLocation);
+                } else {
+                    Log.d(TAG, "Listener es NULL, se ha terminado el Activity.");
                 }
             }
         };
@@ -117,15 +119,15 @@ public class LocationService {
             Log.d(TAG, "Se intentó parar la geolocalización pero el servicio no estaba activo.");
             return;
         }
-        mLocationClient.removeLocationUpdates(mLocationCallback).addOnCompleteListener(
-                mListener.getActivity(), new OnCompleteListener<Void>() {
+        mLocationClient.removeLocationUpdates(mLocationCallback)
+                .addOnCompleteListener(mListener.getActivity(), new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         mActive = false;
                         if (mListener != null) {
                             mListener.onUpdateLocation(mActive, mLastLocation);
                         } else {
-                            Log.d(TAG, "listener = null...");
+                            Log.d(TAG, "Listener = NULL, se ha terminado el Activity.");
                         }
                     }
                 });

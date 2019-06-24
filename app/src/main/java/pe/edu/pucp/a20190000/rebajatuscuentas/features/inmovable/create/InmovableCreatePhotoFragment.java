@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +18,14 @@ import android.widget.ImageView;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Image;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableCreatePhotoFragment extends Fragment {
     private final static String TAG = "RTC_INM_NEW_PHOTO_FRG";
-
     private IInmovableCreateView mView;
-    private ImageView mMainPhoto;
+    private ImageView mPhotoView;
+    private Bitmap mPhoto;
     private Button mAddButton;
     private Button mRemoveButton;
 
@@ -44,7 +47,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         // Obtener los componentes
         mAddButton = view.findViewById(R.id.inm_create_photo_btn_add);
         mRemoveButton = view.findViewById(R.id.inm_create_photo_btn_remove);
-        mMainPhoto = view.findViewById(R.id.inm_create_photo_img_main);
+        mPhotoView = view.findViewById(R.id.inm_create_photo_img_main);
         // Inicializar los componentes
         initializeComponents();
         return view;
@@ -62,7 +65,8 @@ public class InmovableCreatePhotoFragment extends Fragment {
         mRemoveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                mPhoto = null;
+                mPhotoView.setImageBitmap(null);
             }
         });
     }
@@ -74,7 +78,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
             Utilities.showMessage(mView.getContext(), R.string.camera_msg_unavailable);
             return;
         }
-        // Solicitar a la aplicación "Cámara" del celular que tome una foto
+        // Solicitar a la cámara del celular que tome una foto
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(manager) != null) {
             startActivityForResult(takePictureIntent, Constants.REQ_CODE_CAMERA_RESULT);
@@ -83,12 +87,19 @@ public class InmovableCreatePhotoFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQ_CODE_CAMERA_RESULT && resultCode == Activity.RESULT_OK) {
-            // Obtener la imagen y colocarla en el ImageView.
-            Bundle extras = data.getExtras();
-            if (extras != null) {
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                mMainPhoto.setImageBitmap(imageBitmap);
+        if (requestCode == Constants.REQ_CODE_CAMERA_RESULT) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    // Obtener la imagen y colocarla en el ImageView.
+                    Bundle extras = data.getExtras();
+                    if (extras != null) {
+                        mPhoto = Image.rotateIfNeeded((Bitmap) extras.get("data"), data.getData());
+                        mPhotoView.setImageBitmap(mPhoto);
+                    }
+                    break;
+                case Activity.RESULT_CANCELED:
+                    Log.d(TAG, "El usuario canceló la toma de fotos.");
+                    break;
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

@@ -21,7 +21,6 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Permissions;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableCreateLocationFragment extends Fragment {
-
     private static final String TAG = "RTC_INM_CREATE_LOC_FRG";
 
     private IInmovableCreateView mView;
@@ -126,12 +125,12 @@ public class InmovableCreateLocationFragment extends Fragment {
             mDeactivateButton.setEnabled(false);
         }
         // Mostrar los datos de latitud y longitud
-        if (lastLocation != null) {
+        if (lastLocation != null && mView != null) {
             Context context = mView.getContext();
             mLatitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_latitude),
                     lastLocation.getLatitude()));
-            mLongitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_latitude),
-                    lastLocation.getLatitude()));
+            mLongitude.setText(String.format(context.getString(R.string.inm_create_loc_txt_longitude),
+                    lastLocation.getLongitude()));
         }
     }
 

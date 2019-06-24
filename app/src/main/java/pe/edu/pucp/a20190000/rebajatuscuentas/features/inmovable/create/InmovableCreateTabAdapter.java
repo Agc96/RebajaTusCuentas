@@ -1,12 +1,9 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import java.util.ArrayList;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
@@ -20,11 +17,10 @@ public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
 
     public InmovableCreateTabAdapter(FragmentManager fm, Context context) {
         super(fm);
-        mFragmentTitles = new String[] {
-                context.getString(R.string.inm_create_tab_main),
-                context.getString(R.string.inm_create_tab_location),
-                context.getString(R.string.inm_create_tab_photos)
-        };
+        mFragmentTitles = new String[FRAGMENT_COUNT];
+        mFragmentTitles[FRAGMENT_MAIN] = context.getString(R.string.inm_create_tab_main);
+        mFragmentTitles[FRAGMENT_LOCATION] = context.getString(R.string.inm_create_tab_location);
+        mFragmentTitles[FRAGMENT_PHOTO] = context.getString(R.string.inm_create_tab_photos);
     }
 
     @Override

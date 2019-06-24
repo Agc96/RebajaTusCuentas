@@ -70,19 +70,19 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     private void initializeLocationService(Bundle savedInstanceState) {
         // Por defecto el servicio está inactivo y la última ubicación es nula (no hay información)
         boolean active = false;
-        Location location = null;
+        Location lastLocation = null;
         // Verificar si se han persistido los datos, si es así obtenemos los datos
         if (savedInstanceState != null) {
             if (savedInstanceState.keySet().contains(Constants.EXTRA_LOCATION_ACTIVE)) {
                 active = savedInstanceState.getBoolean(Constants.EXTRA_LOCATION_ACTIVE);
             }
             if (savedInstanceState.keySet().contains(Constants.EXTRA_LOCATION_DATA)) {
-                location = savedInstanceState.getParcelable(Constants.EXTRA_LOCATION_DATA);
+                lastLocation = savedInstanceState.getParcelable(Constants.EXTRA_LOCATION_DATA);
             }
         }
         // Inicializamos el servicio y actualizamos los componentes
-        mService = new LocationService(this, active, location);
-        // La actualización del valor ocurrirá en onResume().
+        mService = new LocationService(this, active, lastLocation);
+        // La actualización de los valores en el Presenter y el Fragment se hará en onResume().
     }
 
     @Override
@@ -140,6 +140,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         if (mService.isActive()) {
             mService.startLocationUpdates();
         }
+        onUpdateLocation(mService.isActive(), mService.getLastLocation());
     }
 
     @Override
