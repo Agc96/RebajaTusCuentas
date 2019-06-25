@@ -8,11 +8,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
 public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
-
+    private final static int FRAGMENT_COUNT = 3;
     private final static int FRAGMENT_MAIN = 0;
     private final static int FRAGMENT_LOCATION = 1;
     private final static int FRAGMENT_PHOTO = 2;
-    private final static int FRAGMENT_COUNT = 3;
     private String[] mFragmentTitles;
 
     public InmovableCreateTabAdapter(FragmentManager fm, Context context) {

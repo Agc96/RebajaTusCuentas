@@ -88,11 +88,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     @Override
-    public IPresenter getPresenter() {
-        return mPresenter;
-    }
-
-    @Override
     public Context getContext() {
         return this;
     }

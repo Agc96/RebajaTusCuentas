@@ -1,21 +1,32 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.List;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
+import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.InmovableMainData;
+import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IPresenter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.InmovableCreateActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
-public class InmovableListActivity extends AppCompatActivity {
+public class InmovableListActivity extends AppCompatActivity implements IInmovableListView {
     private final static String TAG = "RTC_INM_LIST_ACT";
     private Toolbar mToolbar;
-    private RecyclerView mList;
+    private RecyclerView mRecycler;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mManager;
+    private TextView mStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +34,8 @@ public class InmovableListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inmovable_list);
 
         mToolbar = findViewById(R.id.inm_list_lyt_toolbar);
-        mList = findViewById(R.id.inm_list_lyt_list);
+        mRecycler = findViewById(R.id.inm_list_lyt_list);
+        mStatus = findViewById(R.id.inm_list_txt_status);
         initializeComponents();
     }
 
@@ -35,7 +47,24 @@ public class InmovableListActivity extends AppCompatActivity {
             // Configurar botón para regresar al Activity anterior
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        // Configurar el RecyclerView
+        // Buscar en la base de datos
+        new InmovableListTask(this).execute();
+    }
+
+    public void initializeList(List<InmovableMainData> inmovables) {
+        if (Utilities.isEmpty(inmovables)) {
+            // Si no existen inmuebles, mostramos un mensaje al respecto
+            mStatus.setText(R.string.inm_list_txt_empty);
+        } else {
+            // Usamos un LinearLayoutManager para mostrar en orden vertical los datos de los inmuebles
+            mManager = new LinearLayoutManager(this);
+            mRecycler.setLayoutManager(mManager);
+            // Especificar el adaptador para el RecyclerView
+            mAdapter = new InmovableListAdapter(inmovables);
+            mRecycler.setAdapter(mAdapter);
+            // Escondemos el mensaje de carga
+            mStatus.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -48,5 +77,15 @@ public class InmovableListActivity extends AppCompatActivity {
     public void goToCreate(View v) {
         Intent intent = new Intent(this, InmovableCreateActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

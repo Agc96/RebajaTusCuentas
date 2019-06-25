@@ -3,6 +3,7 @@ package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class InmovableCreateMainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inmovable_create_main, container, false);
         mName = view.findViewById(R.id.inm_create_main_ipt_name);
@@ -47,8 +48,7 @@ public class InmovableCreateMainFragment extends Fragment {
             // Nada por ahora, esto será validado en el presentador.
         }
         // Actualizar los datos principales en el presentador
-        IInmovableCreatePresenter presenter = (IInmovableCreatePresenter) mView.getPresenter();
-        presenter.setInmovableMainData(name, price);
+        mView.getPresenter().setInmovableMainData(name, price);
     }
 
     @Override

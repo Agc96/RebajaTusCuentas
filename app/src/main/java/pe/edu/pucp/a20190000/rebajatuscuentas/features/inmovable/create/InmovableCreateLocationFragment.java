@@ -142,8 +142,7 @@ public class InmovableCreateLocationFragment extends Fragment {
         String location = mLocation.getText().toString();
         String reference = mReference.getText().toString();
         // Actualizar los datos de ubicación en el presentador
-        IInmovableCreatePresenter presenter = (IInmovableCreatePresenter) mView.getPresenter();
-        presenter.setInmovableLocationData(department, province, district, location, reference);
+        mView.getPresenter().setInmovableLocationData(department, province, district, location, reference);
     }
 
     @Override

@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import java.util.List;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IPresenter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
@@ -73,11 +72,11 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         Location lastLocation = null;
         // Verificar si se han persistido los datos, si es así obtenemos los datos
         if (savedInstanceState != null) {
-            if (savedInstanceState.keySet().contains(Constants.EXTRA_LOCATION_ACTIVE)) {
-                active = savedInstanceState.getBoolean(Constants.EXTRA_LOCATION_ACTIVE);
+            if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE)) {
+                active = savedInstanceState.getBoolean(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE);
             }
-            if (savedInstanceState.keySet().contains(Constants.EXTRA_LOCATION_DATA)) {
-                lastLocation = savedInstanceState.getParcelable(Constants.EXTRA_LOCATION_DATA);
+            if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_LOCATION_DATA)) {
+                lastLocation = savedInstanceState.getParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA);
             }
         }
         // Inicializamos el servicio y actualizamos los componentes
@@ -124,8 +123,8 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(Constants.EXTRA_LOCATION_ACTIVE, mService.isActive());
-        outState.putParcelable(Constants.EXTRA_LOCATION_DATA, mService.getLastLocation());
+        outState.putBoolean(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE, mService.isActive());
+        outState.putParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA, mService.getLastLocation());
     }
 
     @Override
@@ -153,30 +152,31 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.inm_create_tlb_save) {
-            // Obtener datos de los inputs desde los Fragments
-            List<Fragment> fragments = getSupportFragmentManager().getFragments();
-            for (Fragment fragment : fragments) {
-                if (fragment instanceof InmovableCreateMainFragment) {
-                    ((InmovableCreateMainFragment) fragment).setInmovableMainData();
-                    Log.d(TAG, "Obtenidos datos del Fragment de los datos principales.");
-                }
-                if (fragment instanceof InmovableCreateLocationFragment) {
-                    Log.d(TAG, "Obtenidos datos del Fragment de la ubicación.");
-                    ((InmovableCreateLocationFragment) fragment).setInmovableLocationData();
-                }
-                if (fragment instanceof InmovableCreatePhotoFragment) {
-                    Log.d(TAG, "Obtenidos datos del Fragment de las fotos.");
-                }
-            }
-            // Validar y guardar el inmueble de ser posible
-            mPresenter.saveInmovable();
+            prepareSaveInmovable();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void prepareSaveInmovable() {
+        // Obtener datos de los inputs desde los Fragments
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for (Fragment fragment : fragments) {
+            if (fragment instanceof InmovableCreateMainFragment) {
+                ((InmovableCreateMainFragment) fragment).setInmovableMainData();
+                Log.d(TAG, "Obtenidos datos del Fragment de los datos principales.");
+            }
+            if (fragment instanceof InmovableCreateLocationFragment) {
+                Log.d(TAG, "Obtenidos datos del Fragment de la ubicación.");
+                ((InmovableCreateLocationFragment) fragment).setInmovableLocationData();
+            }
+        }
+        // Validar y guardar el inmueble de ser posible
+        mPresenter.saveInmovable();
+    }
+
     @Override
-    public void onInmovableSaveResult(boolean saved) {
+    public void showInmovableSaveResult(boolean saved) {
         if (saved) {
             // Mostrar mensaje de éxito
             Utilities.showMessage(this, R.string.inm_create_msg_success);
@@ -193,7 +193,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public IPresenter getPresenter() {
+    public IInmovableCreatePresenter getPresenter() {
         return mPresenter;
     }
 

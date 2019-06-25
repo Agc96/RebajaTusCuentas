@@ -7,7 +7,6 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.Inmovable;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableCreatePresenter implements IInmovableCreatePresenter {
-
     private final static String TAG = "RTC_INM_CREATE_PRES";
     private IInmovableCreateView view;
     private Inmovable inmovable;

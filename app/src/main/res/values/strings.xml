@@ -31,8 +31,10 @@
 
     <!-- Listado de inmuebles -->
     <string name="inm_list_txt_title">Listado de inmuebles</string>
+    <string name="inm_list_txt_loading">Cargando…</string>
+    <string name="inm_list_txt_empty">No se han encontrado inmuebles.</string>
     <string name="inm_item_txt_name">Nombre del inmueble</string>
-    <string name="inm_item_txt_price">Precio máximo del inmueble (US$)</string>
+    <string name="inm_item_txt_price">Precio máximo del inmueble</string>
     <string name="inm_item_txt_location">Dirección del inmueble</string>
 
     <!-- Creación de inmuebles -->
@@ -53,7 +55,7 @@
 
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
-    <string name="inm_create_main_lbl_price">Precio máximo (US$)</string>
+    <string name="inm_create_main_lbl_price">Precio máximo</string>
 
     <!-- Creación de inmuebles: Datos de ubicación -->
     <string name="inm_create_loc_lbl_department">Departamento</string>
@@ -86,6 +88,8 @@
 
     <!-- Mensajes de conexión a la cámara del dispositivo móvil -->
     <string name="camera_msg_unavailable">Este dispositivo no cuenta con cámara.</string>
+    <string name="camera_msg_permissions">No se aceptaron los permisos necesarios para poder tomar
+        una foto en su dispositivo.</string>
 
     <!-- Botones de la barra superior (Toolbar) -->
     <string name="toolbar_txt_search">Buscar</string>

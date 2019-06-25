@@ -12,7 +12,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.Inmovable;
 
 @Dao
 public interface InmovableDao {
-    @Query("SELECT INMOVABLE_ID, NAME, MAX_PRICE FROM RTC_INMOVABLE")
+    @Query("SELECT INMOVABLE_ID, NAME, MAX_PRICE, LOCATION FROM RTC_INMOVABLE")
     List<InmovableMainData> listAllMainData();
 
     @Insert

@@ -11,6 +11,7 @@
         android:id="@+id/inm_item_img_main"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_centerVertical="true"
         android:contentDescription="@string/inm_create_photo_img_main"
         app:srcCompat="@drawable/ic_menu_inmovables" />
 
@@ -18,6 +19,7 @@
         android:id="@+id/inm_item_lyt_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@id/inm_item_img_main"
         android:orientation="vertical">

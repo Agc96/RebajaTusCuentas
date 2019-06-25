@@ -127,36 +127,28 @@ public class LocationService {
                         if (mListener != null) {
                             mListener.onUpdateLocation(mActive, mLastLocation);
                         } else {
-                            Log.d(TAG, "Listener = NULL, se ha terminado el Activity.");
+                            Log.d(TAG, "Listener es NULL, se ha terminado el Activity.");
                         }
                     }
                 });
     }
 
-    /**
-     * Determina si el servicio está activo o no.
-     */
+    /** Determina si el servicio está activo o no. */
     public boolean isActive() {
         return mActive;
     }
 
-    /**
-     * Obtiene la última ubicación registrada.
-     */
+    /** Obtiene la última ubicación registrada. */
     public Location getLastLocation() {
         return mLastLocation;
     }
 
-    /**
-     * Limpia la referencia al Listener (generalmente un Activity).
-     */
+    /** Limpia la referencia al Listener (generalmente un Activity). */
     public void onDestroy() {
         mListener = null;
     }
 
-    /**
-     * Interfaz para la comunicación entre el listener (generalmente un Activity) y el servicio.
-     */
+    /** Interfaz para la comunicación entre el listener (generalmente un Activity) y el servicio. */
     public interface OnUpdateLocationListener {
         Activity getActivity();
         void onUpdateLocation(boolean active, Location location);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,7 +32,7 @@ public final class Utilities {
      * @return Cadena de caracteres formateada según el formato de moneda definido.
      */
     public static String formatMoney(double value) {
-        return String.format(Locale.getDefault(), "US$ %.2f", value);
+        return NumberFormat.getCurrencyInstance().format(value);
     }
 
     /**
