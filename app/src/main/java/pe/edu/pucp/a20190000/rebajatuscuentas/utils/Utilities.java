@@ -8,6 +8,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
+
+import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
 public final class Utilities {
 
@@ -20,6 +23,15 @@ public final class Utilities {
      */
     public static String formatString(Context context, @StringRes int stringId, Object... args) {
         return String.format(context.getString(stringId), args);
+    }
+
+    /**
+     * Formatea un valor tipo moneda.
+     * @param value Valor del double.
+     * @return Cadena de caracteres formateada según el formato de moneda definido.
+     */
+    public static String formatMoney(double value) {
+        return String.format(Locale.getDefault(), "US$ %.2f", value);
     }
 
     /**

@@ -107,7 +107,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
         for (Fragment fragment : fragmentList) {
             if (fragment instanceof InmovableCreateLocationFragment) {
-                Log.w(TAG, "Se encontró el Fragment de ubicaciones, actualizando valores...");
+                Log.d(TAG, "Se encontró el Fragment de ubicaciones, actualizando valores...");
                 ((InmovableCreateLocationFragment) fragment).showInmovableLocationComponents(active,
                         lastLocation);
                 return;

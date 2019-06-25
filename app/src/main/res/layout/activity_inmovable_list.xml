@@ -16,18 +16,12 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/inm_list_lyt_frame"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/inm_list_lyt_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inm_list_lyt_toolbar">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/inm_list_lyt_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/inm_list_lyt_toolbar" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/inm_list_btn_create"

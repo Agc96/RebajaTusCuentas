@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import java.io.File;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
@@ -49,29 +52,29 @@ public class InmovableCreatePhotoFragment extends Fragment {
         mRemoveButton = view.findViewById(R.id.inm_create_photo_btn_remove);
         mPhotoView = view.findViewById(R.id.inm_create_photo_img_main);
         // Inicializar los componentes
-        initializeComponents();
+        initializeComponents(savedInstanceState);
         return view;
     }
 
-    public void initializeComponents() {
+    public void initializeComponents(Bundle savedInstanceState) {
         // Configurar el botón de añadir una foto
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callTakePictureIntent();
+                takePhoto();
             }
         });
         // Configurar el botón de quitar una foto
         mRemoveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhoto = null;
-                mPhotoView.setImageBitmap(null);
+                removePhoto();
             }
         });
+        // Configurar la visibilidad del botón de remover
     }
 
-    private void callTakePictureIntent() {
+    private void takePhoto() {
         // Verificar que el dispositivo móvil cuenta con cámara
         PackageManager manager = mView.getContext().getPackageManager();
         if (!manager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
@@ -85,17 +88,20 @@ public class InmovableCreatePhotoFragment extends Fragment {
         }
     }
 
+    private void removePhoto() {
+        // Borra la imagen del ImageView y del Fragment
+        mPhotoView.setImageBitmap(null);
+        mPhoto = null;
+        // Desactiva el botón de remover foto
+        mRemoveButton.setEnabled(false);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.REQ_CODE_CAMERA_RESULT) {
             switch (resultCode) {
                 case Activity.RESULT_OK:
-                    // Obtener la imagen y colocarla en el ImageView.
-                    Bundle extras = data.getExtras();
-                    if (extras != null) {
-                        mPhoto = Image.rotateIfNeeded((Bitmap) extras.get("data"), data.getData());
-                        mPhotoView.setImageBitmap(mPhoto);
-                    }
+                    processImage(data);
                     break;
                 case Activity.RESULT_CANCELED:
                     Log.d(TAG, "El usuario canceló la toma de fotos.");
@@ -103,6 +109,20 @@ public class InmovableCreatePhotoFragment extends Fragment {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void processImage(Intent data) {
+        // Obtener la imagen y colocarla en el ImageView
+        Bundle extras = data.getExtras();
+        if (extras != null) {
+            mPhoto = Image.rotateIfNeeded((Bitmap) extras.get("data"), data.getData());
+            mPhotoView.setImageBitmap(mPhoto);
+        }
+        // TODO: TEST
+        File filesDir = mView.getContext().getFilesDir();
+        Log.d(TAG, filesDir.toString());
+        File externalFilesDir = mView.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        Log.d(TAG, externalFilesDir == null ? "null" : externalFilesDir.toString());
     }
 
     @Override

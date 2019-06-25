@@ -31,6 +31,9 @@
 
     <!-- Listado de inmuebles -->
     <string name="inm_list_txt_title">Listado de inmuebles</string>
+    <string name="inm_item_txt_name">Nombre del inmueble</string>
+    <string name="inm_item_txt_price">Precio máximo del inmueble (US$)</string>
+    <string name="inm_item_txt_location">Dirección del inmueble</string>
 
     <!-- Creación de inmuebles -->
     <string name="inm_create_txt_title">Nuevo inmueble</string>
@@ -50,7 +53,7 @@
 
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
-    <string name="inm_create_main_lbl_price">Precio máximo</string>
+    <string name="inm_create_main_lbl_price">Precio máximo (US$)</string>
 
     <!-- Creación de inmuebles: Datos de ubicación -->
     <string name="inm_create_loc_lbl_department">Departamento</string>
