@@ -2,16 +2,15 @@ package pe.edu.pucp.a20190000.rebajatuscuentas.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import java.lang.Object;
+import java.lang.String;
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
-
-import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
 public final class Utilities {
 

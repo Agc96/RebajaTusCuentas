@@ -3,15 +3,14 @@ package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
-import pe.edu.pucp.a20190000.rebajatuscuentas.features.base.IPresenter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.home.HomeActivity;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;

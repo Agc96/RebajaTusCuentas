@@ -1,8 +1,8 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.login;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.util.Pair;
+import androidx.annotation.NonNull;
+import androidx.core.util.Pair;
 
 import java.net.UnknownHostException;
 

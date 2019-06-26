@@ -1,6 +1,6 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

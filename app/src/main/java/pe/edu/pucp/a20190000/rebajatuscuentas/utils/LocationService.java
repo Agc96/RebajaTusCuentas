@@ -3,7 +3,7 @@ package pe.edu.pucp.a20190000.rebajatuscuentas.utils;
 import android.app.Activity;
 import android.content.IntentSender;
 import android.location.Location;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.common.api.ResolvableApiException;

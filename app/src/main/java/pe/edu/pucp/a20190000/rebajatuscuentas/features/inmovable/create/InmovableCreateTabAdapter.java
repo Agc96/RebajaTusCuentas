@@ -1,9 +1,9 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
