@@ -76,6 +76,7 @@ public class InmovableListActivity extends AppCompatActivity implements IInmovab
     public void goToCreate(View v) {
         Intent intent = new Intent(this, InmovableCreateActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
