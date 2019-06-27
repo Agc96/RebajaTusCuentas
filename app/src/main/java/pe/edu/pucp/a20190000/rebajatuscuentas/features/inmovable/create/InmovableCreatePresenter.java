@@ -11,13 +11,13 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
     private IInmovableCreateView view;
     private Inmovable inmovable;
 
-    public InmovableCreatePresenter(IInmovableCreateView view) {
+    public InmovableCreatePresenter(IInmovableCreateView view, Inmovable inmovable) {
         this.view = view;
-        this.inmovable = new Inmovable();
+        this.inmovable = (inmovable != null) ? inmovable : new Inmovable();
     }
 
     @Override
-    public void setInmovableMainData(String name, Double price) {
+    public void setInmovableMainData(String name, double price) {
         inmovable.setName(name);
         inmovable.setPrice(price);
     }
@@ -33,7 +33,7 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
     }
 
     @Override
-    public void setInmovableLocationExtra(Double latitude, Double longitude) {
+    public void setInmovableLocationExtra(double latitude, double longitude) {
         inmovable.setLatitude(latitude);
         inmovable.setLongitude(longitude);
     }
@@ -41,6 +41,11 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
     @Override
     public void setInmovablePhoto() {
         // TODO
+    }
+
+    @Override
+    public Inmovable getInmovable() {
+        return inmovable;
     }
 
     @Override
@@ -56,12 +61,8 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
             Utilities.showMessage(view.getContext(), R.string.inm_create_msg_name_empty);
             return false;
         }
-        if (inmovable.getPrice() == null) {
-            Utilities.showMessage(view.getContext(), R.string.inm_create_msg_price_empty);
-            return false;
-        }
         if (inmovable.getPrice() <= 0) {
-            Utilities.showMessage(view.getContext(), R.string.inm_create_msg_price_invalid);
+            Utilities.showMessage(view.getContext(), R.string.inm_create_msg_price_empty);
             return false;
         }
         if (Utilities.isEmpty(inmovable.getDepartment())) {

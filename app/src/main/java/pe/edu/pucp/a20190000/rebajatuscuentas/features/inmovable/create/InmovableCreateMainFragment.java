@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +43,7 @@ public class InmovableCreateMainFragment extends Fragment {
     public void setInmovableMainData() {
         // Obtener los datos principales
         String name = mName.getText().toString();
-        Double price = null;
+        double price = 0;
         try {
             price = Double.parseDouble(mPrice.getText().toString());
         } catch (NumberFormatException ex) {

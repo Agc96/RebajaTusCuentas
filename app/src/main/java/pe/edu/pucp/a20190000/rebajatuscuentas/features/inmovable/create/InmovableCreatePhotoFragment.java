@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
@@ -19,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.File;
+
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Image;
@@ -30,6 +35,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
     private IInmovableCreateView mView;
     private ImageView mPhotoView;
     private Bitmap mPhoto;
+    private String mPhotoPath;
     private Button mAddButton;
     private Button mRemoveButton;
 
@@ -57,7 +63,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         return view;
     }
 
-    public void initializeComponents(Bundle savedInstanceState) {
+    private void initializeComponents(Bundle savedInstanceState) {
         // Configurar el botón de añadir una foto
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,13 +82,15 @@ public class InmovableCreatePhotoFragment extends Fragment {
     }
 
     private void askForTakePhoto() {
+        // Verificar que el dispositivo móvil cuenta con cámara
+        PackageManager manager = mView.getContext().getPackageManager();
+        if (!manager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+            Utilities.showMessage(mView.getContext(), R.string.camera_msg_unavailable);
+            return;
+        }
         // Verificar que se tengan los permisos necesarios para tomar la foto
-        String[] permissions = new String[] {
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-        if (Permissions.checkFromFragment(this, Constants.REQ_CODE_CAMERA_PERMISSIONS, permissions)) {
+        if (Permissions.checkFromFragment(this, Constants.REQ_CODE_CAMERA_PERMISSIONS,
+                Manifest.permission.CAMERA)) {
             takePhoto();
         }
     }
@@ -92,7 +100,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         // Verificar si se aceptaron los permisos para el uso de la cámara y el almacenamiento externo
         if (requestCode == Constants.REQ_CODE_CAMERA_PERMISSIONS) {
             if (Permissions.checkFromResults(permissions, grantResults)) {
-                takePhoto();
+                askForTakePhoto();
             } else {
                 Utilities.showMessage(mView.getContext(), R.string.camera_msg_permissions);
             }
@@ -101,18 +109,24 @@ public class InmovableCreatePhotoFragment extends Fragment {
     }
 
     private void takePhoto() {
-        // Obtener el contexto del Fragment
-        Context context = getContext();
-        if (context == null) return;
-        // Verificar que el dispositivo móvil cuenta con cámara
-        PackageManager manager = context.getPackageManager();
-        if (!manager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            Utilities.showMessage(context, R.string.camera_msg_unavailable);
+        if (mView == null || mView.getContext() == null) {
+            Log.d(TAG, "El Activity ha terminado, ya no es necesario tomar la foto.");
             return;
         }
         // Solicitar a la cámara del celular que tome una foto
+        Context context = mView.getContext();
+        PackageManager manager = context.getPackageManager();
         Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePhotoIntent.resolveActivity(manager) != null) {
+            // Crear un archivo privado para guardar la foto
+            File photoFile = Image.createImage(context);
+            if (photoFile != null) {
+                // Guardar datos del archivo
+                mPhotoPath = photoFile.getAbsolutePath();
+                // Iniciar el Activity que maneja la cámara
+                Uri photoUri = FileProvider.getUriForFile(context, Constants.FILE_PROVIDER, photoFile);
+                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            }
             startActivityForResult(takePhotoIntent, Constants.REQ_CODE_CAMERA_INTENT);
         }
     }
@@ -138,14 +152,8 @@ public class InmovableCreatePhotoFragment extends Fragment {
             Log.w(TAG, "No se encontraron los datos del Intent de la cámara.");
             return;
         }
-        // Obtener la imagen
-        Bitmap photo = (Bitmap) data.getExtras().get("data");
-        if (photo == null) {
-            Log.w(TAG, "No se encontró la imagen en el Intent de la cámara.");
-            return;
-        }
-        // Colocar la imagen en el ImageView
-        mPhoto = Image.rotateIfNeeded(photo, data.getData(), getContext());
+        // Obtener la imagen y colocarla en el ImageView
+        mPhoto = BitmapFactory.decodeFile(mPhotoPath);
         mPhotoView.setImageBitmap(mPhoto);
         // Activar el botón de borrar la foto
         mRemoveButton.setEnabled(true);

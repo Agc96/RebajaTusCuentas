@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat;
 import android.util.Log;
 
 public class Permissions {
-
     private final static String TAG = "RTC_PERMISSIONS";
 
     /**
@@ -22,7 +21,7 @@ public class Permissions {
      * @param permissions Arreglo de permisos de la aplicación.
      * @return Verdadero si todos los permisos solicitados fueron aceptados, Falso de otro modo.
      */
-    public static boolean checkFromActivity(Activity activity, int requestCode, String[] permissions) {
+    public static boolean checkFromActivity(Activity activity, int requestCode, String... permissions) {
         if (Utilities.isEmpty(permissions)) {
             Log.d(TAG, "No se solicitó ningún permiso.");
             return false;
@@ -47,7 +46,7 @@ public class Permissions {
      * @param permissions Arreglo de permisos de la aplicación.
      * @return Verdadero si todos los permisos solicitados fueron aceptados, Falso de otro modo.
      */
-    public static boolean checkFromFragment(Fragment fragment, int requestCode, String[] permissions) {
+    public static boolean checkFromFragment(Fragment fragment, int requestCode, String... permissions) {
         // Verificar arreglo de permisos
         if (Utilities.isEmpty(permissions)) {
             Log.d(TAG, "No se solicitó ningún permiso.");
@@ -70,7 +69,7 @@ public class Permissions {
      * @param permissions Lista de permisos que se desean solicitar.
      * @return Verdadero si todos los permisos fueron aprobados, Falso de otro modo.
      */
-    public static boolean hasAllPermissions(Context context, String[] permissions) {
+    public static boolean hasAllPermissions(Context context, String... permissions) {
         for (String permission : permissions) {
             if (!hasPermission(context, permission)) return false;
         }

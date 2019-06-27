@@ -43,8 +43,7 @@
     <string name="inm_create_tab_location">Ubicación</string>
     <string name="inm_create_tab_photos">Fotos</string>
     <string name="inm_create_msg_name_empty">Ingrese el nombre del inmueble.</string>
-    <string name="inm_create_msg_price_empty">Ingrese el precio máximo del inmueble.</string>
-    <string name="inm_create_msg_price_invalid">El precio máximo del inmueble debe ser positivo.</string>
+    <string name="inm_create_msg_price_empty">Ingrese un precio máximo positivo para el inmueble.</string>
     <string name="inm_create_msg_department_empty">Ingrese el departamento del inmueble.</string>
     <string name="inm_create_msg_province_empty">Ingrese la dirección del inmueble.</string>
     <string name="inm_create_msg_district_empty">Ingrese el distrito del inmueble.</string>

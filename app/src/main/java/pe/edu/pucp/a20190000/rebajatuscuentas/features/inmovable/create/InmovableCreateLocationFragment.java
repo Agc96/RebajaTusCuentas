@@ -93,11 +93,8 @@ public class InmovableCreateLocationFragment extends Fragment {
             return;
         }
         // Solicitar permisos a la aplicación para iniciar el servicio de geolocalización
-        String[] permissions = new String[] {
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        };
-        if (Permissions.checkFromFragment(this, Constants.REQ_CODE_GPS_PERMISSIONS, permissions)) {
+        if (Permissions.checkFromFragment(this, Constants.REQ_CODE_GPS_PERMISSIONS,
+                Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)) {
             mView.getLocationService().startLocationUpdates();
         }
     }

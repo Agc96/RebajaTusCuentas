@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import java.util.List;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
+import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.Inmovable;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
@@ -42,7 +43,6 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         mToolbar = findViewById(R.id.inm_create_lyt_toolbar);
         mViewPager = findViewById(R.id.inm_create_lyt_pager);
         mTabLayout = findViewById(R.id.inm_create_lyt_tabs);
-        mPresenter = new InmovableCreatePresenter(this);
 
         initializeComponents(savedInstanceState);
         initializeLocationService(savedInstanceState);
@@ -70,6 +70,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         // Por defecto el servicio está inactivo y la última ubicación es nula (no hay información)
         boolean active = false;
         Location lastLocation = null;
+        Inmovable inmovable = null;
         // Verificar si se han persistido los datos, si es así obtenemos los datos
         if (savedInstanceState != null) {
             if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE)) {
@@ -78,8 +79,12 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
             if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_LOCATION_DATA)) {
                 lastLocation = savedInstanceState.getParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA);
             }
+            if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_DATA)) {
+                inmovable = savedInstanceState.getParcelable(Constants.EXTRA_INMOVABLE_DATA);
+            }
         }
-        // Inicializamos el servicio y actualizamos los componentes
+        // Inicializamos el servicio y el presentador, y actualizamos los componentes
+        mPresenter = new InmovableCreatePresenter(this, inmovable);
         mService = new LocationService(this, active, lastLocation);
         // La actualización de los valores en el Presenter y el Fragment se hará en onResume().
     }
@@ -125,6 +130,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         super.onSaveInstanceState(outState);
         outState.putBoolean(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE, mService.isActive());
         outState.putParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA, mService.getLastLocation());
+        outState.putParcelable(Constants.EXTRA_INMOVABLE_DATA, mPresenter.getInmovable());
     }
 
     @Override
