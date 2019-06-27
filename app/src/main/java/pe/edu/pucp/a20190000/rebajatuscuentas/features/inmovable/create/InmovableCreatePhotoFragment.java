@@ -36,6 +36,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
     private ImageView mPhotoView;
     private Bitmap mPhoto;
     private String mPhotoPath;
+    private Uri mPhotoUri;
     private Button mAddButton;
     private Button mRemoveButton;
 
@@ -68,7 +69,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePhoto();
+                askForTakePhoto();
             }
         });
         // Configurar el botón de quitar una foto
@@ -100,7 +101,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         // Verificar si se aceptaron los permisos para el uso de la cámara y el almacenamiento externo
         if (requestCode == Constants.REQ_CODE_CAMERA_PERMISSIONS) {
             if (Permissions.checkFromResults(permissions, grantResults)) {
-                askForTakePhoto();
+                takePhoto();
             } else {
                 Utilities.showMessage(mView.getContext(), R.string.camera_msg_permissions);
             }
@@ -121,11 +122,11 @@ public class InmovableCreatePhotoFragment extends Fragment {
             // Crear un archivo privado para guardar la foto
             File photoFile = Image.createImage(context);
             if (photoFile != null) {
-                // Guardar datos del archivo
+                // Guardar datos de la foto para cuando se regrese del Intent
                 mPhotoPath = photoFile.getAbsolutePath();
-                // Iniciar el Activity que maneja la cámara
-                Uri photoUri = FileProvider.getUriForFile(context, Constants.FILE_PROVIDER, photoFile);
-                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                mPhotoUri = FileProvider.getUriForFile(context, Constants.FILE_PROVIDER, photoFile);
+                // Iniciar el Intent para el Activity que maneja la cámara
+                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
             }
             startActivityForResult(takePhotoIntent, Constants.REQ_CODE_CAMERA_INTENT);
         }
@@ -136,7 +137,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         if (requestCode == Constants.REQ_CODE_CAMERA_INTENT) {
             switch (resultCode) {
                 case Activity.RESULT_OK:
-                    processImage(data);
+                    processImage();
                     break;
                 case Activity.RESULT_CANCELED:
                     Log.d(TAG, "El usuario canceló la toma de fotos.");
@@ -147,13 +148,10 @@ public class InmovableCreatePhotoFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void processImage(Intent data) {
-        if (data == null || data.getExtras() == null) {
-            Log.w(TAG, "No se encontraron los datos del Intent de la cámara.");
-            return;
-        }
+    private void processImage() {
         // Obtener la imagen y colocarla en el ImageView
-        mPhoto = BitmapFactory.decodeFile(mPhotoPath);
+        Bitmap originalPhoto = BitmapFactory.decodeFile(mPhotoPath);
+        mPhoto = Image.rotateIfNeeded(originalPhoto, mPhotoUri, mView.getContext());
         mPhotoView.setImageBitmap(mPhoto);
         // Activar el botón de borrar la foto
         mRemoveButton.setEnabled(true);

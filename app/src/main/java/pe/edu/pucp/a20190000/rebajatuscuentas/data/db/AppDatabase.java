@@ -10,7 +10,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.dao.UserDao;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.Inmovable;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
 
-@Database(entities = {User.class, Inmovable.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class, Inmovable.class}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "myfirstlogin.db";

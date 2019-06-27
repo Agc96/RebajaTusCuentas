@@ -29,7 +29,7 @@ public class Image {
         SimpleDateFormat now = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
         String filename = "RTC_PHOTO_" + now.format(new Date());
         // Obtenemos un directorio reservado para uso de la aplicación
-        File directory = context.getFilesDir();
+        File directory = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         // Creamos una imagen temporal en el directorio especificado.
         try {
             return File.createTempFile(filename, ".jpg", directory);

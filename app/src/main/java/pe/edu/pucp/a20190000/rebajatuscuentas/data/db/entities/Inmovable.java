@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "RTC_INMOVABLE")
 public class Inmovable implements Parcelable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "INMOVABLE_ID")
     private int inmovableId;
 
