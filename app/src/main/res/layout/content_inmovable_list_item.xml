@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inm_item_lyt_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp" >
+
+    <ImageView
+        android:id="@+id/inm_item_img_main"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/inm_create_photo_img_main"
+        app:srcCompat="@drawable/ic_menu_inmovables" />
+
+    <LinearLayout
+        android:id="@+id/inm_item_lyt_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/inm_item_img_main"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/inm_item_txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_item_txt_name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/inm_item_txt_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_item_txt_price" />
+
+        <TextView
+            android:id="@+id/inm_item_txt_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_item_txt_location" />
+    </LinearLayout>
+</RelativeLayout>

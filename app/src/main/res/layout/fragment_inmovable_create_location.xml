@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inm_create_loc_lyt_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.inmovable.create.InmovableCreateLocationFragment">
+
+    <LinearLayout
+        android:id="@+id/inm_create_loc_lyt_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_department"
+            android:labelFor="@id/inm_create_loc_ipt_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_department" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_province"
+            android:labelFor="@id/inm_create_loc_ipt_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_province" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_district"
+            android:labelFor="@id/inm_create_loc_ipt_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_district" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_location"
+            android:labelFor="@id/inm_create_loc_ipt_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_location" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/inm_create_loc_lbl_reference"
+            android:labelFor="@id/inm_create_loc_ipt_reference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inm_create_loc_lbl_reference" />
+        <EditText
+            android:id="@+id/inm_create_loc_ipt_reference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:id="@+id/inm_create_loc_lyt_gps_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/inm_create_loc_txt_latitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inm_create_loc_txt_latitude_default" />
+            <TextView
+                android:id="@+id/inm_create_loc_txt_longitude"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inm_create_loc_txt_longitude_default" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/inm_create_loc_lyt_gps_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/inm_create_loc_btn_activate_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inm_create_loc_btn_activate_gps" />
+            <Button
+                android:id="@+id/inm_create_loc_btn_deactivate_gps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/inm_create_loc_btn_deactivate_gps" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My First Login</string>
+    <string name="app_name">Rebaja tus Cuentas</string>
 
     <!-- Inicio de sesión -->
     <string name="login_txt_title">Inicio de sesión</string>
@@ -18,12 +18,82 @@
 
     <!-- Pantalla de bienvenida -->
     <string name="home_txt_title">Pantalla de bienvenida</string>
-    <string name="home_lbl_fullname">Nombres y apellidos</string>
-    <string name="home_lbl_email">Correo electrónico</string>
-    <string name="home_btn_logout">Cerrar sesión</string>
+    <string name="home_img_profile">Foto de perfil</string>
+    <string name="home_txt_fullname">Nombre completo</string>
+    <string name="home_txt_email">Correo electrónico</string>
+    <string name="home_menu_inmovables">Inmuebles</string>
+    <string name="home_menu_clients">Cartera de clientes</string>
+    <string name="home_menu_requests">Solicitudes de dinero</string>
+    <string name="home_menu_options">Opciones de usuario</string>
+    <string name="home_menu_profile">Perfil</string>
+    <string name="home_menu_logout">Cerrar sesión</string>
+    <string name="home_dlg_logout_msg">¿Desea cerrar sesión en este dispositivo?</string>
+
+    <!-- Listado de inmuebles -->
+    <string name="inm_list_txt_title">Listado de inmuebles</string>
+    <string name="inm_list_txt_loading">Cargando…</string>
+    <string name="inm_list_txt_empty">No se han encontrado inmuebles.</string>
+    <string name="inm_item_txt_name">Nombre del inmueble</string>
+    <string name="inm_item_txt_price">Precio máximo del inmueble</string>
+    <string name="inm_item_txt_location">Dirección del inmueble</string>
+
+    <!-- Creación de inmuebles -->
+    <string name="inm_create_txt_title">Nuevo inmueble</string>
+    <string name="inm_create_tab_main">Principal</string>
+    <string name="inm_create_tab_location">Ubicación</string>
+    <string name="inm_create_tab_photos">Fotos</string>
+    <string name="inm_create_msg_name_empty">Ingrese el nombre del inmueble.</string>
+    <string name="inm_create_msg_price_empty">Ingrese un precio máximo positivo para el inmueble.</string>
+    <string name="inm_create_msg_department_empty">Ingrese el departamento del inmueble.</string>
+    <string name="inm_create_msg_province_empty">Ingrese la dirección del inmueble.</string>
+    <string name="inm_create_msg_district_empty">Ingrese el distrito del inmueble.</string>
+    <string name="inm_create_msg_location_empty">Ingrese la dirección del inmueble.</string>
+    <string name="inm_create_msg_failure">Hubo un error desconocido al intentar guardar el inmueble.
+        Por favor inténtelo nuevamente.</string>
+    <string name="inm_create_msg_database">No se pudo guardar el inmueble en la base de datos.
+        Por favor inténtelo nuevamente.</string>
+    <string name="inm_create_msg_no_photo">Inmueble guardado en base de datos, sin embargo no se
+        pudo guardar la foto principal del inmueble.</string>
+    <string name="inm_create_msg_saved">Inmueble guardado en base de datos.</string>
+
+    <!-- Creación de inmuebles: Datos principales -->
+    <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
+    <string name="inm_create_main_lbl_price">Precio máximo</string>
+
+    <!-- Creación de inmuebles: Datos de ubicación -->
+    <string name="inm_create_loc_lbl_department">Departamento</string>
+    <string name="inm_create_loc_lbl_province">Provincia</string>
+    <string name="inm_create_loc_lbl_district">Distrito</string>
+    <string name="inm_create_loc_lbl_location">Dirección</string>
+    <string name="inm_create_loc_lbl_reference">Referencia(s)</string>
+    <string name="inm_create_loc_btn_activate_gps">Activar GPS</string>
+    <string name="inm_create_loc_btn_deactivate_gps">Desactivar GPS</string>
+    <string name="inm_create_loc_txt_latitude_default">Latitud: Desconocida</string>
+    <string name="inm_create_loc_txt_latitude">Latitud: %.4f</string>
+    <string name="inm_create_loc_txt_longitude_default">Longitud: Desconocida</string>
+    <string name="inm_create_loc_txt_longitude">Longitud: %.4f</string>
+
+    <!-- Creación de inmuebles: Fotos -->
+    <string name="inm_create_photo_btn_take">Tomar foto</string>
+    <string name="inm_create_photo_btn_delete">Borrar foto</string>
+    <string name="inm_create_photo_img_main">Foto principal del inmueble</string>
 
     <!-- Mensajes de conexión al API REST -->
     <string name="api_dlg_error_msg_http">Ocurrió un error desconocido.\nCódigo de error: HTTP %d</string>
     <string name="api_dlg_error_msg_rest">El servicio otorgó un error desconocido.\nCódigo de error: %d</string>
     <string name="api_dlg_error_msg_empty">El servicio no otorgó respuesta.</string>
+
+    <!-- Mensajes relacionados a funcionalidades del sistema Android -->
+    <string name="feature_gps_msg_unavailable">Este dispositivo no cuenta con un servicio de geolocalización.</string>
+    <string name="feature_gps_msg_denied">No se aceptaron los permisos necesarios para poder registrar
+        su ubicación en tiempo real.</string>
+    <string name="feature_camera_msg_unavailable">Este dispositivo no cuenta con cámara.</string>
+    <string name="feature_camera_msg_denied">No se aceptaron los permisos necesarios para poder tomar
+        una foto en su dispositivo.</string>
+    <string name="feature_storage_msg_denied">No se aceptaron los permisos necesarios para poder
+        guardar archivos (como fotos) en su dispositivo. ¿Desea guardar de todas formas?</string>
+
+    <!-- Botones de la barra superior (Toolbar) -->
+    <string name="toolbar_txt_search">Buscar</string>
+    <string name="toolbar_txt_save">Guardar</string>
 </resources>

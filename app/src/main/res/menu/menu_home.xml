@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home_menu_inmovables"
+            android:icon="@drawable/ic_menu_inmovables"
+            android:title="@string/home_menu_inmovables" />
+        <item
+            android:id="@+id/home_menu_clients"
+            android:icon="@drawable/ic_menu_clients"
+            android:title="@string/home_menu_clients" />
+        <item
+            android:id="@+id/home_menu_requests"
+            android:icon="@drawable/ic_menu_requests"
+            android:title="@string/home_menu_requests" />
+        <item
+            android:id="@+id/home_menu_options"
+            android:title="@string/home_menu_options">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/home_menu_profile"
+                        android:icon="@drawable/ic_menu_profile"
+                        android:title="@string/home_menu_profile" />
+                    <item
+                        android:id="@+id/home_menu_logout"
+                        android:icon="@drawable/ic_menu_logout"
+                        android:title="@string/home_menu_logout" />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>
