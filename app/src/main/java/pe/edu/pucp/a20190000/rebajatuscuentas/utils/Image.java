@@ -88,7 +88,8 @@ public class Image {
 
     /**
      * Mueve una imagen temporal a una carpeta permanente ubicada en el almacenamiento externo del
-     * Smartphone.
+     * Smartphone. El estar la imagen ubicada en esta carpeta permitirá al usuario borrar
+     * manualmente la foto si es que el celular se está quedando sin espacio disponible.
      * @param sourcePath La ruta absoluta de la imagen de origen obtenida con la cámara.
      * @param destFilename El nombre del archivo que tendrá la imagen de destino.
      * @return Verdadero si se pudo transferir el archivo, Falso de otro modo.
@@ -97,14 +98,18 @@ public class Image {
         // Obtener la imagen de origen
         File sourceImage = new File(sourcePath);
         // Obtener directorio del almacenamiento externo del Smartphone
-        File destDir = getExternalStroageFolder();
+        File destDir = getExternalStorageFolder();
         if (destDir == null) return false;
         // Crear la imagen de destino
         File destImage = new File(destDir, destFilename);
         return sourceImage.renameTo(destImage);
     }
 
-    private static File getExternalStroageFolder() {
+    /**
+     * Obtiene la carpeta de imágenes del almacenamiento externo.
+     * @return Un objeto File apuntando a la carpeta de imágenes del almaceniamiento externo.
+     */
+    private static File getExternalStorageFolder() {
         File parentDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         if (parentDir == null) {
             Log.d(TAG, "No se encontró la carpeta para el almacenamiento externo...");
@@ -119,9 +124,14 @@ public class Image {
         return rtcDir;
     }
 
+    /**
+     * Carga una imagen desde la carpeta de la aplicación dentro del almacenamiento externo.
+     * @param filename El nombre del archivo donde está ubicada la imagen.
+     * @return La imagen solicitada.
+     */
     public static Bitmap loadFromExternalStorage(String filename) {
         // Obtener directorio del almacenamiento externo del Smartphone
-        File destDir = getExternalStroageFolder();
+        File destDir = getExternalStorageFolder();
         if (destDir == null) return null;
         File image = new File(destDir, filename);
         if (image.exists() && image.isFile()) {

@@ -115,8 +115,8 @@ public class Inmovable implements Parcelable {
         name = parcel.readString();
         price = parcel.readDouble();
         department = parcel.readString();
-        district = parcel.readString();
         province = parcel.readString();
+        district = parcel.readString();
         direction = parcel.readString();
         reference = parcel.readString();
         // Escribir latitud y longitud, para ello tenemos que ver primero si son nulos o no

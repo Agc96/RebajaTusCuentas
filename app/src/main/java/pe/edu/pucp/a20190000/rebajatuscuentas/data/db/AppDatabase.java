@@ -12,15 +12,13 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
 
 @Database(entities = {User.class, Inmovable.class}, version = 6, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-
-    private static final String DB_NAME = "rtc_mobile.db";
+    private static final String DB_NAME = "rebajatuscuentas.db";
     private static AppDatabase INSTANCE;
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
-                    .fallbackToDestructiveMigration()
-                    .build();
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class,
+                    DB_NAME).fallbackToDestructiveMigration().build();
         }
         return INSTANCE;
     }

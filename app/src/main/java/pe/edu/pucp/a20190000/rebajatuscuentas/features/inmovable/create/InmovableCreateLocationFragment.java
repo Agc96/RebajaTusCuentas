@@ -22,7 +22,6 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableCreateLocationFragment extends Fragment {
     private static final String TAG = "RTC_INM_CREATE_LOC_FRG";
-
     private IInmovableCreateView mView;
     private EditText mDepartment;
     private EditText mProvince;
