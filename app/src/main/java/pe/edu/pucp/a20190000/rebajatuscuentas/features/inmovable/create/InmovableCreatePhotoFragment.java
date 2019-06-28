@@ -78,7 +78,6 @@ public class InmovableCreatePhotoFragment extends Fragment {
                 removePhoto();
             }
         });
-        // Configurar la visibilidad del botón de remover
     }
 
     private void askForTakePhoto() {
@@ -114,8 +113,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
             return;
         }
         // Solicitar a la cámara del celular que tome una foto
-        Context context = mView.getContext();
-        PackageManager manager = context.getPackageManager();
+        PackageManager manager = mView.getContext().getPackageManager();
         Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePhotoIntent.resolveActivity(manager) != null) {
             // Si es que ya se había tomado una foto temporal, se elimina dicha foto
@@ -123,11 +121,11 @@ public class InmovableCreatePhotoFragment extends Fragment {
                 Image.delete(mPhotoPath);
             }
             // Crear un archivo privado para guardar la foto
-            File photoFile = Image.create(context);
+            File photoFile = Image.create(mView.getContext());
             if (photoFile != null) {
                 // Guardar datos de la foto para cuando se regrese del Intent
                 mPhotoPath = photoFile.getAbsolutePath();
-                Uri uri = FileProvider.getUriForFile(context, Constants.FILE_PROVIDER, photoFile);
+                Uri uri = FileProvider.getUriForFile(mView.getContext(), Constants.FILE_PROVIDER, photoFile);
                 // Iniciar el Intent para el Activity que maneja la cámara
                 takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 startActivityForResult(takePhotoIntent, Constants.REQ_CODE_CAMERA_INTENT);
@@ -163,6 +161,10 @@ public class InmovableCreatePhotoFragment extends Fragment {
         // Borra la imagen del ImageView y del Fragment
         mPhotoView.setImageBitmap(null);
         mPhoto = null;
+        // Borra la imagen del directorio de la aplicación
+        if (mPhotoPath != null) {
+            Image.delete(mPhotoPath);
+        }
         // Desactiva el botón de remover foto
         mRemoveButton.setEnabled(false);
     }
