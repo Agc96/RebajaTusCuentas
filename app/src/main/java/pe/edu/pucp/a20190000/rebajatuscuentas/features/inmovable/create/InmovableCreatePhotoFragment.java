@@ -36,7 +36,6 @@ public class InmovableCreatePhotoFragment extends Fragment {
     private ImageView mPhotoView;
     private Bitmap mPhoto;
     private String mPhotoPath;
-    private Uri mPhotoUri;
     private Button mAddButton;
     private Button mRemoveButton;
 
@@ -86,7 +85,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
         // Verificar que el dispositivo móvil cuenta con cámara
         PackageManager manager = mView.getContext().getPackageManager();
         if (!manager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            Utilities.showMessage(mView.getContext(), R.string.camera_msg_unavailable);
+            Utilities.showMessage(mView.getContext(), R.string.feature_camera_msg_unavailable);
             return;
         }
         // Verificar que se tengan los permisos necesarios para tomar la foto
@@ -103,7 +102,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
             if (Permissions.checkFromResults(permissions, grantResults)) {
                 takePhoto();
             } else {
-                Utilities.showMessage(mView.getContext(), R.string.camera_msg_permissions);
+                Utilities.showMessage(mView.getContext(), R.string.feature_camera_msg_denied);
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -119,16 +118,20 @@ public class InmovableCreatePhotoFragment extends Fragment {
         PackageManager manager = context.getPackageManager();
         Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePhotoIntent.resolveActivity(manager) != null) {
+            // Si es que ya se había tomado una foto temporal, se elimina dicha foto
+            if (mPhotoPath != null) {
+                Image.delete(mPhotoPath);
+            }
             // Crear un archivo privado para guardar la foto
-            File photoFile = Image.createImage(context);
+            File photoFile = Image.create(context);
             if (photoFile != null) {
                 // Guardar datos de la foto para cuando se regrese del Intent
                 mPhotoPath = photoFile.getAbsolutePath();
-                mPhotoUri = FileProvider.getUriForFile(context, Constants.FILE_PROVIDER, photoFile);
+                Uri uri = FileProvider.getUriForFile(context, Constants.FILE_PROVIDER, photoFile);
                 // Iniciar el Intent para el Activity que maneja la cámara
-                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
+                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startActivityForResult(takePhotoIntent, Constants.REQ_CODE_CAMERA_INTENT);
             }
-            startActivityForResult(takePhotoIntent, Constants.REQ_CODE_CAMERA_INTENT);
         }
     }
 
@@ -150,8 +153,7 @@ public class InmovableCreatePhotoFragment extends Fragment {
 
     private void processImage() {
         // Obtener la imagen y colocarla en el ImageView
-        Bitmap originalPhoto = BitmapFactory.decodeFile(mPhotoPath);
-        mPhoto = Image.rotateIfNeeded(originalPhoto, mPhotoUri, mView.getContext());
+        mPhoto = Image.rotateIfNeeded(mPhotoPath);
         mPhotoView.setImageBitmap(mPhoto);
         // Activar el botón de borrar la foto
         mRemoveButton.setEnabled(true);
@@ -170,22 +172,29 @@ public class InmovableCreatePhotoFragment extends Fragment {
         super.onSaveInstanceState(outState);
         // Persistimos la foto si es que esta no está vacía
         if (mPhoto != null) {
-            outState.putParcelable(Constants.EXTRA_INMOVABLE_PHOTO, mPhoto);
+            outState.putString(Constants.EXTRA_INMOVABLE_PHOTO_PATH, mPhotoPath);
+            outState.putParcelable(Constants.EXTRA_INMOVABLE_PHOTO_DATA, mPhoto);
         }
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState != null) {
-            // Verificar si se han persistido la foto
-            if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_PHOTO)) {
+            // Verificar si se han persistido los datos de la foto
+            if (savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_PHOTO_DATA) &&
+                    savedInstanceState.keySet().contains(Constants.EXTRA_INMOVABLE_PHOTO_PATH)) {
                 // Recuperamos la foto y colocamos los datos correspondientes
-                mPhoto = savedInstanceState.getParcelable(Constants.EXTRA_INMOVABLE_PHOTO);
+                mPhoto = savedInstanceState.getParcelable(Constants.EXTRA_INMOVABLE_PHOTO_DATA);
+                mPhotoPath = savedInstanceState.getString(Constants.EXTRA_INMOVABLE_PHOTO_PATH);
                 mPhotoView.setImageBitmap(mPhoto);
                 mRemoveButton.setEnabled(true);
             }
         }
+    }
+
+    public void setInmovablePhotoData() {
+        mView.getPresenter().setInmovablePhoto(mPhotoPath);
     }
 
     @Override

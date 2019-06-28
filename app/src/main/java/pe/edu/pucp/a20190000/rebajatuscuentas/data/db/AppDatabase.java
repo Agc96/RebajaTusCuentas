@@ -13,7 +13,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.User;
 @Database(entities = {User.class, Inmovable.class}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static final String DB_NAME = "myfirstlogin.db";
+    private static final String DB_NAME = "rtc_mobile.db";
     private static AppDatabase INSTANCE;
 
     public static AppDatabase getInstance(Context context) {

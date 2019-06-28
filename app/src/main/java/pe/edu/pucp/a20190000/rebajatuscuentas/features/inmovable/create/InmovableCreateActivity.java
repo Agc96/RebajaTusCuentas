@@ -1,10 +1,15 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
@@ -22,6 +27,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.Inmovable;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Permissions;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableCreateActivity extends AppCompatActivity implements IInmovableCreateView,
@@ -63,6 +69,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         // Configurar el ViewPager y el TabLayout
         mTabAdapter = new InmovableCreateTabAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(mTabAdapter);
+        mViewPager.setOffscreenPageLimit(InmovableCreateTabAdapter.PAGE_COUNT);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -176,26 +183,62 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
                 Log.d(TAG, "Obtenidos datos del Fragment de la ubicación.");
                 ((InmovableCreateLocationFragment) fragment).setInmovableLocationData();
             }
+            if (fragment instanceof InmovableCreatePhotoFragment) {
+                Log.d(TAG, "Obtenidos datos del Fragment de la foto.");
+                ((InmovableCreatePhotoFragment) fragment).setInmovablePhotoData();
+            }
         }
         // Validar y guardar el inmueble de ser posible
-        mPresenter.saveInmovable();
+        mPresenter.validateAndSaveInmovable();
     }
 
     @Override
-    public void showInmovableSaveResult(boolean saved) {
-        if (saved) {
-            // Mostrar mensaje de éxito
-            Utilities.showMessage(this, R.string.inm_create_msg_success);
-            // Terminar el servicio GPS y cerrar esta actividad.
-            mService.stopLocationUpdates();
-            finish();
+    public void askForSavePhotoPermissions() {
+        if (Permissions.checkFromActivity(this, Constants.REQ_CODE_SAVE_PERMISSIONS,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            mPresenter.saveInmovable(true);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (Permissions.checkFromResults(permissions, grantResults)) {
+            mPresenter.saveInmovable(true);
         } else {
-            // Mostrar cuadro de diálogo que indica una falla al guardar en base de datos.
+            // Mostrar cuadro de diálogo
             new AlertDialog.Builder(this)
-                    .setMessage(R.string.inm_create_msg_failure)
-                    .setPositiveButton(android.R.string.ok, null)
+                    .setMessage(R.string.feature_storage_msg_denied)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mPresenter.saveInmovable(false);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
                     .show();
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void showInmovableSaveResult(boolean saved, @StringRes int messageId) {
+        // Crear un cuadro de diálogo para mostrar el mensaje de guardado.
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this).setMessage(messageId);
+        // Se terminará el programa si es que se logró guardar en base de datos
+        if (saved) {
+            dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // Terminar el servicio GPS y cerrar esta actividad.
+                    mService.stopLocationUpdates();
+                    finish();
+                }
+            });
+        } else {
+            dialog.setPositiveButton(android.R.string.ok, null);
+        }
+        // Mostrar el cuadro de diálogo
+        dialog.show();
     }
 
     @Override

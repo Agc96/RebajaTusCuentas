@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
 public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
-    private final static int FRAGMENT_COUNT = 3;
+    public final static int PAGE_COUNT = 3;
     private final static int FRAGMENT_MAIN = 0;
     private final static int FRAGMENT_LOCATION = 1;
     private final static int FRAGMENT_PHOTO = 2;
@@ -16,7 +16,7 @@ public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
 
     public InmovableCreateTabAdapter(FragmentManager fm, Context context) {
         super(fm);
-        mFragmentTitles = new String[FRAGMENT_COUNT];
+        mFragmentTitles = new String[PAGE_COUNT];
         mFragmentTitles[FRAGMENT_MAIN] = context.getString(R.string.inm_create_tab_main);
         mFragmentTitles[FRAGMENT_LOCATION] = context.getString(R.string.inm_create_tab_location);
         mFragmentTitles[FRAGMENT_PHOTO] = context.getString(R.string.inm_create_tab_photos);
@@ -24,7 +24,7 @@ public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position >= 0 && position < FRAGMENT_COUNT) {
+        if (position >= 0 && position < PAGE_COUNT) {
             return mFragmentTitles[position];
         }
         return null;
@@ -46,7 +46,7 @@ public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return FRAGMENT_COUNT;
+        return PAGE_COUNT;
     }
 
 }

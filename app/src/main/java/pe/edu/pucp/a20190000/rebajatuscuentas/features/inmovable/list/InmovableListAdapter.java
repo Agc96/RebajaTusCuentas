@@ -36,7 +36,8 @@ public class InmovableListAdapter extends RecyclerView.Adapter<InmovableListView
     public void onBindViewHolder(@NonNull InmovableListViewHolder viewHolder, int position) {
         InmovableMainData inmovable = inmovables.get(position);
         // Colocar los detalles principales del inmueble en el item
-        viewHolder.setDetails(inmovable.getName(), inmovable.getPrice(), inmovable.getLocation());
+        viewHolder.setDetails(inmovable.getId(), inmovable.getName(), inmovable.getPrice(),
+                inmovable.getLocation());
         // TODO: Colocar la foto, si es que hubiera
     }
 

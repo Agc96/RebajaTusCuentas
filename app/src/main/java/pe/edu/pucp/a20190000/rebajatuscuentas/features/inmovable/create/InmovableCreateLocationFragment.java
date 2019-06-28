@@ -89,7 +89,7 @@ public class InmovableCreateLocationFragment extends Fragment {
         // Verificar si contamos con GPS
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         if (lm == null) {
-            Utilities.showMessage(context, R.string.gps_msg_unavailable);
+            Utilities.showMessage(context, R.string.feature_gps_msg_unavailable);
             return;
         }
         // Solicitar permisos a la aplicación para iniciar el servicio de geolocalización
@@ -106,7 +106,7 @@ public class InmovableCreateLocationFragment extends Fragment {
             if (Permissions.checkFromResults(permissions, grantResults)) {
                 mView.getLocationService().startLocationUpdates();
             } else {
-                Utilities.showMessage(mView.getContext(), R.string.gps_msg_permissions);
+                Utilities.showMessage(mView.getContext(), R.string.feature_gps_msg_denied);
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

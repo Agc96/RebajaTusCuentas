@@ -2,12 +2,16 @@ package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list;
 
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -17,6 +21,7 @@ import java.util.List;
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.InmovableMainData;
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.InmovableCreateActivity;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableListActivity extends AppCompatActivity implements IInmovableListView {
