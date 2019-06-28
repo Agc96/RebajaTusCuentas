@@ -19,21 +19,21 @@ public class InmovableListViewHolder extends RecyclerView.ViewHolder {
     private ImageView mPhoto;
     private TextView mName;
     private TextView mPrice;
-    private TextView mLocation;
+    private TextView mDirection;
 
     public InmovableListViewHolder(View view) {
         super(view);
         mName = view.findViewById(R.id.inm_item_txt_name);
         mPrice = view.findViewById(R.id.inm_item_txt_price);
-        mLocation = view.findViewById(R.id.inm_item_txt_location);
+        mDirection = view.findViewById(R.id.inm_item_txt_direction);
         mPhoto = view.findViewById(R.id.inm_item_img_main);
     }
 
-    public void setDetails(int id, String name, Double price, String location) {
+    public void setDetails(int id, String name, Double price, String direction) {
         // Colocar datos principales
         mName.setText(name);
         mPrice.setText(Utilities.formatMoney(price));
-        mLocation.setText(location);
+        mDirection.setText(direction);
         // Colocar foto del inmueble, si es que existe
         String filename = String.format(Locale.getDefault(), Constants.IMAGE_INMOVABLE_FORMAT, id);
         Bitmap image = Image.loadFromExternalStorage(filename);

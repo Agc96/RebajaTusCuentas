@@ -26,16 +26,15 @@ import java.util.List;
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.Inmovable;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
-import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.GeolocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Permissions;
-import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class InmovableCreateActivity extends AppCompatActivity implements IInmovableCreateView,
-        LocationService.OnUpdateLocationListener {
+        GeolocationService.OnUpdateLocationListener {
 
     private final static String TAG = "RTC_INM_CREATE_ACT";
     private IInmovableCreatePresenter mPresenter;
-    private LocationService mService;
+    private GeolocationService mService;
     private ViewPager mViewPager;
     private InmovableCreateTabAdapter mTabAdapter;
     private TabLayout mTabLayout;
@@ -92,7 +91,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         }
         // Inicializamos el servicio y el presentador, y actualizamos los componentes
         mPresenter = new InmovableCreatePresenter(this, inmovable);
-        mService = new LocationService(this, active, lastLocation);
+        mService = new GeolocationService(this, active, lastLocation);
         // La actualización de los valores en el Presenter y el Fragment se hará en onResume().
     }
 
@@ -257,7 +256,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public LocationService getLocationService() {
+    public GeolocationService getGeolocationService() {
         return mService;
     }
 

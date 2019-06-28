@@ -30,8 +30,8 @@ public class Inmovable implements Parcelable {
     @ColumnInfo(name = "DISTRICT")
     private String district;
 
-    @ColumnInfo(name = "LOCATION")
-    private String location;
+    @ColumnInfo(name = "DIRECTION")
+    private String direction;
 
     @ColumnInfo(name = "REFERENCE")
     private String reference;
@@ -44,20 +44,6 @@ public class Inmovable implements Parcelable {
 
     public Inmovable() {
         // Java inicializa todos los valores en 0 o NULL, dependiendo del tipo de dato.
-    }
-
-    public Inmovable(int inmovableId, String name, Double price, String department, String province,
-                     String district, String location, String reference, Double latitude, Double longitude) {
-        this.inmovableId = inmovableId;
-        this.name = name;
-        this.price = price;
-        this.department = department;
-        this.province = province;
-        this.district = district;
-        this.location = location;
-        this.reference = reference;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
     public int getInmovableId() {
@@ -78,8 +64,8 @@ public class Inmovable implements Parcelable {
     public String getDistrict() {
         return district;
     }
-    public String getLocation() {
-        return location;
+    public String getDirection() {
+        return direction;
     }
     public String getReference() {
         return reference;
@@ -109,8 +95,8 @@ public class Inmovable implements Parcelable {
     public void setDistrict(String district) {
         this.district = district;
     }
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
     public void setReference(String reference) {
         this.reference = reference;
@@ -130,7 +116,8 @@ public class Inmovable implements Parcelable {
         price = parcel.readDouble();
         department = parcel.readString();
         district = parcel.readString();
-        location = parcel.readString();
+        province = parcel.readString();
+        direction = parcel.readString();
         reference = parcel.readString();
         // Escribir latitud y longitud, para ello tenemos que ver primero si son nulos o no
         latitude = readNullableDoubleFromParcel(parcel);
@@ -151,7 +138,7 @@ public class Inmovable implements Parcelable {
         parcel.writeString(department);
         parcel.writeString(province);
         parcel.writeString(district);
-        parcel.writeString(location);
+        parcel.writeString(direction);
         parcel.writeString(reference);
         // Escribir latitud y longitud, para ello tenemos que indicar primero si son nulos o no
         writeNullableDoubleToParcel(parcel, latitude);

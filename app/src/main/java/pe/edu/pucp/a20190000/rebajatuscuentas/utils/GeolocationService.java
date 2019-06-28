@@ -20,11 +20,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class LocationService {
-    private final static String TAG = "RTC_INM_CREATE_LOC_SRV";
+public class GeolocationService {
+    private final static String TAG = "RTC_UTIL_GEOLOCATION";
     private final static int LOCATION_INTERVAL = 10000; // milisegundos (= 10 segundos)
     private final static int LOCATION_FAST_INTERVAL = 5000; // milisegundos (= 5 segundos)
-
     private OnUpdateLocationListener mListener;
     private FusedLocationProviderClient mLocationClient;
     private SettingsClient mSettingsClient;
@@ -34,7 +33,7 @@ public class LocationService {
     private Location mLastLocation;
     private boolean mActive;
 
-    public LocationService(OnUpdateLocationListener listener, boolean active, Location lastLocation) {
+    public GeolocationService(OnUpdateLocationListener listener, boolean active, Location lastLocation) {
         mListener = listener;
         mActive = active;
         mLastLocation = lastLocation;
@@ -143,7 +142,7 @@ public class LocationService {
         return mLastLocation;
     }
 
-    /** Limpia la referencia al Listener (generalmente un Activity). */
+    /** Limpia la referencia del Listener (generalmente un Activity). */
     public void onDestroy() {
         mListener = null;
     }

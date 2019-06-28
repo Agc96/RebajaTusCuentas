@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
-import pe.edu.pucp.a20190000.rebajatuscuentas.utils.LocationService;
+import pe.edu.pucp.a20190000.rebajatuscuentas.utils.GeolocationService;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Permissions;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
@@ -27,7 +27,7 @@ public class InmovableCreateLocationFragment extends Fragment {
     private EditText mDepartment;
     private EditText mProvince;
     private EditText mDistrict;
-    private EditText mLocation;
+    private EditText mDirection;
     private EditText mReference;
     private TextView mLatitude;
     private TextView mLongitude;
@@ -53,7 +53,7 @@ public class InmovableCreateLocationFragment extends Fragment {
         mDepartment = view.findViewById(R.id.inm_create_loc_ipt_department);
         mProvince = view.findViewById(R.id.inm_create_loc_ipt_province);
         mDistrict = view.findViewById(R.id.inm_create_loc_ipt_district);
-        mLocation = view.findViewById(R.id.inm_create_loc_ipt_location);
+        mDirection = view.findViewById(R.id.inm_create_loc_ipt_direction);
         mReference = view.findViewById(R.id.inm_create_loc_ipt_reference);
         mLatitude = view.findViewById(R.id.inm_create_loc_txt_latitude);
         mLongitude = view.findViewById(R.id.inm_create_loc_txt_longitude);
@@ -76,7 +76,7 @@ public class InmovableCreateLocationFragment extends Fragment {
         mDeactivateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocationService service = mView.getLocationService();
+                GeolocationService service = mView.getGeolocationService();
                 if (service.isActive()) {
                     service.stopLocationUpdates();
                 }
@@ -95,7 +95,7 @@ public class InmovableCreateLocationFragment extends Fragment {
         // Solicitar permisos a la aplicación para iniciar el servicio de geolocalización
         if (Permissions.checkFromFragment(this, Constants.REQ_CODE_GPS_PERMISSIONS,
                 Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            mView.getLocationService().startLocationUpdates();
+            mView.getGeolocationService().startLocationUpdates();
         }
     }
 
@@ -104,7 +104,7 @@ public class InmovableCreateLocationFragment extends Fragment {
         // Verificar si se aceptaron los permisos para el uso de GPS
         if (requestCode == Constants.REQ_CODE_GPS_PERMISSIONS) {
             if (Permissions.checkFromResults(permissions, grantResults)) {
-                mView.getLocationService().startLocationUpdates();
+                mView.getGeolocationService().startLocationUpdates();
             } else {
                 Utilities.showMessage(mView.getContext(), R.string.feature_gps_msg_denied);
             }
@@ -136,10 +136,10 @@ public class InmovableCreateLocationFragment extends Fragment {
         String department = mDepartment.getText().toString();
         String province = mProvince.getText().toString();
         String district = mDistrict.getText().toString();
-        String location = mLocation.getText().toString();
+        String direction = mDirection.getText().toString();
         String reference = mReference.getText().toString();
         // Actualizar los datos de ubicación en el presentador
-        mView.getPresenter().setInmovableLocationData(department, province, district, location, reference);
+        mView.getPresenter().setInmovableLocationData(department, province, district, direction, reference);
     }
 
     @Override

@@ -56,13 +56,13 @@
             android:inputType="textPersonName" />
 
         <TextView
-            android:id="@+id/inm_create_loc_lbl_location"
-            android:labelFor="@id/inm_create_loc_ipt_location"
+            android:id="@+id/inm_create_loc_lbl_direction"
+            android:labelFor="@id/inm_create_loc_ipt_direction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inm_create_loc_lbl_location" />
+            android:text="@string/inm_create_loc_lbl_direction" />
         <EditText
-            android:id="@+id/inm_create_loc_ipt_location"
+            android:id="@+id/inm_create_loc_ipt_direction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"

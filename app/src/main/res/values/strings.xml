@@ -35,7 +35,7 @@
     <string name="inm_list_txt_empty">No se han encontrado inmuebles.</string>
     <string name="inm_item_txt_name">Nombre del inmueble</string>
     <string name="inm_item_txt_price">Precio máximo del inmueble</string>
-    <string name="inm_item_txt_location">Dirección del inmueble</string>
+    <string name="inm_item_txt_direction">Dirección del inmueble</string>
 
     <!-- Creación de inmuebles -->
     <string name="inm_create_txt_title">Nuevo inmueble</string>
@@ -47,7 +47,7 @@
     <string name="inm_create_msg_department_empty">Ingrese el departamento del inmueble.</string>
     <string name="inm_create_msg_province_empty">Ingrese la dirección del inmueble.</string>
     <string name="inm_create_msg_district_empty">Ingrese el distrito del inmueble.</string>
-    <string name="inm_create_msg_location_empty">Ingrese la dirección del inmueble.</string>
+    <string name="inm_create_msg_direction_empty">Ingrese la dirección del inmueble.</string>
     <string name="inm_create_msg_failure">Hubo un error desconocido al intentar guardar el inmueble.
         Por favor inténtelo nuevamente.</string>
     <string name="inm_create_msg_database">No se pudo guardar el inmueble en la base de datos.
@@ -64,7 +64,7 @@
     <string name="inm_create_loc_lbl_department">Departamento</string>
     <string name="inm_create_loc_lbl_province">Provincia</string>
     <string name="inm_create_loc_lbl_district">Distrito</string>
-    <string name="inm_create_loc_lbl_location">Dirección</string>
+    <string name="inm_create_loc_lbl_direction">Dirección</string>
     <string name="inm_create_loc_lbl_reference">Referencia(s)</string>
     <string name="inm_create_loc_btn_activate_gps">Activar GPS</string>
     <string name="inm_create_loc_btn_deactivate_gps">Desactivar GPS</string>

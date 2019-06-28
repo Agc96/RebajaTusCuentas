@@ -26,11 +26,11 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
 
     @Override
     public void setInmovableLocationData(String department, String province, String district,
-                                         String location, String reference) {
+                                         String direction, String reference) {
         mInmovable.setDepartment(department);
         mInmovable.setProvince(province);
         mInmovable.setDistrict(district);
-        mInmovable.setLocation(location);
+        mInmovable.setDirection(direction);
         mInmovable.setReference(reference);
     }
 
@@ -82,8 +82,8 @@ public class InmovableCreatePresenter implements IInmovableCreatePresenter {
             Utilities.showMessage(mView.getContext(), R.string.inm_create_msg_district_empty);
             return false;
         }
-        if (Utilities.isEmpty(mInmovable.getLocation())) {
-            Utilities.showMessage(mView.getContext(), R.string.inm_create_msg_location_empty);
+        if (Utilities.isEmpty(mInmovable.getDirection())) {
+            Utilities.showMessage(mView.getContext(), R.string.inm_create_msg_direction_empty);
             return false;
         }
         return true;

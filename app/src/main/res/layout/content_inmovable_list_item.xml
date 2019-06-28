@@ -38,9 +38,9 @@
             android:text="@string/inm_item_txt_price" />
 
         <TextView
-            android:id="@+id/inm_item_txt_location"
+            android:id="@+id/inm_item_txt_direction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inm_item_txt_location" />
+            android:text="@string/inm_item_txt_direction" />
     </LinearLayout>
 </RelativeLayout>

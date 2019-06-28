@@ -14,14 +14,14 @@ public class InmovableMainData {
     @ColumnInfo(name = "MAX_PRICE")
     private Double price;
 
-    @ColumnInfo(name = "LOCATION")
-    private String location;
+    @ColumnInfo(name = "DIRECTION")
+    private String direction;
 
-    public InmovableMainData(Integer id, String name, Double price, String location) {
+    public InmovableMainData(Integer id, String name, Double price, String direction) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.location = location;
+        this.direction = direction;
     }
 
     public Integer getId() {
@@ -33,7 +33,7 @@ public class InmovableMainData {
     public Double getPrice() {
         return price;
     }
-    public String getLocation() {
-        return location;
+    public String getDirection() {
+        return direction;
     }
 }

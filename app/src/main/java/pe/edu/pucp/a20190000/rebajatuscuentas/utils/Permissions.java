@@ -86,6 +86,12 @@ public class Permissions {
         return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
+    /**
+     * Verifica que los permisos que fueron solicitados al usuario fueron aceptados.
+     * @param permissions Arreglo de permisos de la aplicación.
+     * @param grantResults Arreglo de resultados de los permisos de la aplicación.
+     * @return Verdadero si todos los permisos solicitados fueron aceptados, Falso de otro modo.
+     */
     public static boolean checkFromResults(String[] permissions, int[] grantResults) {
         if (Utilities.isEmpty(permissions) || Utilities.isEmpty(grantResults)) {
             Log.d(TAG, "El usuario canceló la petición de permisos.");
