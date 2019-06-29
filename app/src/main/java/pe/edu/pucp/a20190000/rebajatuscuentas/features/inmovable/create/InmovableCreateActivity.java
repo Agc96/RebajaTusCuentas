@@ -50,7 +50,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         mTabLayout = findViewById(R.id.inm_create_lyt_tabs);
 
         initializeComponents(savedInstanceState);
-        initializeLocationService(savedInstanceState);
+        initializeServiceAndPresenter(savedInstanceState);
     }
 
     /**
@@ -72,7 +72,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    private void initializeLocationService(Bundle savedInstanceState) {
+    private void initializeServiceAndPresenter(Bundle savedInstanceState) {
         // Por defecto el servicio está inactivo y la última ubicación es nula (no hay información)
         boolean active = false;
         Location lastLocation = null;

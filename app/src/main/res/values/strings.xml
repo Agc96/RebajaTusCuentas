@@ -52,9 +52,9 @@
         Por favor inténtelo nuevamente.</string>
     <string name="inm_create_msg_database">No se pudo guardar el inmueble en la base de datos.
         Por favor inténtelo nuevamente.</string>
-    <string name="inm_create_msg_no_photo">Inmueble guardado en base de datos, sin embargo no se
+    <string name="inm_create_msg_no_photo">Inmueble guardado correctamente, sin embargo no se
         pudo guardar la foto principal del inmueble.</string>
-    <string name="inm_create_msg_saved">Inmueble guardado en base de datos.</string>
+    <string name="inm_create_msg_saved">Inmueble guardado exitosamente.</string>
 
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>
