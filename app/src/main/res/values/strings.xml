@@ -48,13 +48,12 @@
     <string name="inm_create_msg_province_empty">Ingrese la dirección del inmueble.</string>
     <string name="inm_create_msg_district_empty">Ingrese el distrito del inmueble.</string>
     <string name="inm_create_msg_direction_empty">Ingrese la dirección del inmueble.</string>
-    <string name="inm_create_msg_failure">Hubo un error desconocido al intentar guardar el inmueble.
+    <string name="inm_create_msg_failure">No se pudo guardar el inmueble en la base de datos.
         Por favor inténtelo nuevamente.</string>
-    <string name="inm_create_msg_database">No se pudo guardar el inmueble en la base de datos.
-        Por favor inténtelo nuevamente.</string>
-    <string name="inm_create_msg_no_photo">Inmueble guardado correctamente, sin embargo no se
-        pudo guardar la foto principal del inmueble.</string>
     <string name="inm_create_msg_saved">Inmueble guardado exitosamente.</string>
+    <string name="inm_create_msg_saved_no_photo">Inmueble guardado correctamente, sin embargo no se
+        pudo guardar la foto principal del inmueble.</string>
+    <string name="inm_create_msg_saved_photo">Inmueble y foto guardados exitosamente.</string>
 
     <!-- Creación de inmuebles: Datos principales -->
     <string name="inm_create_main_lbl_name">Nombre del inmueble</string>

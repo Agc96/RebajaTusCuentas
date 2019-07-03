@@ -49,7 +49,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         mViewPager = findViewById(R.id.inm_create_lyt_pager);
         mTabLayout = findViewById(R.id.inm_create_lyt_tabs);
 
-        initializeComponents(savedInstanceState);
+        initializeComponents();
         initializeServiceAndPresenter(savedInstanceState);
     }
 
@@ -57,7 +57,7 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
      * Inicializa los componentes del layout, en este caso se inicializa la barra superior (Toolbar)
      * y los Fragments ubicados en las pestañas (Tabs) a mostrarse en el TabLayout.
      */
-    private void initializeComponents(Bundle savedInstanceState) {
+    private void initializeComponents() {
         // Configurar la barra de la aplicación
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -137,6 +137,11 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         outState.putBoolean(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE, mService.isActive());
         outState.putParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA, mService.getLastLocation());
         outState.putParcelable(Constants.EXTRA_INMOVABLE_DATA, mPresenter.getInmovable());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
@@ -220,11 +225,12 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public void showInmovableSaveResult(boolean saved, @StringRes int messageId) {
+    public void showInmovableSaveResult(@StringRes int messageId) {
         // Crear un cuadro de diálogo para mostrar el mensaje de guardado.
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this).setMessage(messageId);
-        // Se terminará el programa si es que se logró guardar en base de datos
-        if (saved) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(messageId);
+        // Solo se terminará el programa si es que se logró guardar en base de datos
+        if (messageId != R.string.inm_create_msg_failure) {
             dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

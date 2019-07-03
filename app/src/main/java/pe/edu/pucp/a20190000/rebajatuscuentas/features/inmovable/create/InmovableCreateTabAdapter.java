@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import java.lang.ref.WeakReference;
+
 import pe.edu.pucp.a20190000.rebajatuscuentas.R;
 
 public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
@@ -12,22 +14,29 @@ public class InmovableCreateTabAdapter extends FragmentPagerAdapter {
     private final static int FRAGMENT_MAIN = 0;
     private final static int FRAGMENT_LOCATION = 1;
     private final static int FRAGMENT_PHOTO = 2;
-    private String[] mFragmentTitles;
+    private WeakReference<Context> mContext;
 
     public InmovableCreateTabAdapter(FragmentManager fm, Context context) {
         super(fm);
-        mFragmentTitles = new String[PAGE_COUNT];
-        mFragmentTitles[FRAGMENT_MAIN] = context.getString(R.string.inm_create_tab_main);
-        mFragmentTitles[FRAGMENT_LOCATION] = context.getString(R.string.inm_create_tab_location);
-        mFragmentTitles[FRAGMENT_PHOTO] = context.getString(R.string.inm_create_tab_photos);
+        mContext = new WeakReference<>(context);
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position >= 0 && position < PAGE_COUNT) {
-            return mFragmentTitles[position];
+        // Obtener la referencia al contexto de la aplicación
+        Context context = mContext.get();
+        if (context == null) return null;
+        // Mostrar el título de la página
+        switch (position) {
+            case FRAGMENT_MAIN:
+                return context.getString(R.string.inm_create_tab_main);
+            case FRAGMENT_LOCATION:
+                return context.getString(R.string.inm_create_tab_location);
+            case FRAGMENT_PHOTO:
+                return context.getString(R.string.inm_create_tab_photos);
+            default:
+                return null;
         }
-        return null;
     }
 
     @Override

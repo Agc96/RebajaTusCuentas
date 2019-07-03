@@ -7,5 +7,5 @@ public interface IInmovableCreateView extends IView {
     IInmovableCreatePresenter getPresenter();
     GeolocationService getGeolocationService();
     void askForSavePhotoPermissions();
-    void showInmovableSaveResult(boolean saved, int messageId);
+    void showInmovableSaveResult(int messageId);
 }
