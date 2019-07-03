@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -72,6 +73,11 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
+    /**
+     * Configura el servicio de geolocalización y el presentador, dependiendo de los datos
+     * guardados en el Bundle que se crea al reconstruir el Activity.
+     * @param savedInstanceState Bundle con los datos persistidos del Activity.
+     */
     private void initializeServiceAndPresenter(Bundle savedInstanceState) {
         // Por defecto el servicio está inactivo y la última ubicación es nula (no hay información)
         boolean active = false;
@@ -96,31 +102,21 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQ_CODE_GPS_ACTIVATE) {
-            switch (resultCode) {
-                case Activity.RESULT_OK:
-                    Log.d(TAG, "El usuario accedió a la activación del dispositivo GPS.");
-                    mService.startLocationUpdates();
-                    break;
-                case Activity.RESULT_CANCELED:
-                    Log.d(TAG, "El usuario decidió no activar el dispositivo GPS.");
-                    break;
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE, mService.isActive());
+        outState.putParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA, mService.getLastLocation());
+        outState.putParcelable(Constants.EXTRA_INMOVABLE_DATA, mPresenter.getInmovable());
     }
 
     @Override
     public void onUpdateLocation(boolean active, Location lastLocation) {
-        // Actualizar el Fragment
-        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
-        for (Fragment fragment : fragmentList) {
+        // Actualizar el Fragment de los datos de ubicación
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for (Fragment fragment : fragments) {
             if (fragment instanceof InmovableCreateLocationFragment) {
-                Log.d(TAG, "Se encontró el Fragment de ubicaciones, actualizando valores...");
-                ((InmovableCreateLocationFragment) fragment).showInmovableLocationComponents(active,
-                        lastLocation);
-                return;
+                Log.d(TAG, "Actualizando el Fragment de los datos de ubicación...");
+                ((InmovableCreateLocationFragment) fragment).showInmovableLocationComponents(active, lastLocation);
             }
         }
         // Actualizar el Presenter
@@ -129,14 +125,6 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
             double longitude = lastLocation.getLongitude();
             mPresenter.setInmovableLocationExtra(latitude, longitude);
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(Constants.EXTRA_INMOVABLE_LOCATION_ACTIVE, mService.isActive());
-        outState.putParcelable(Constants.EXTRA_INMOVABLE_LOCATION_DATA, mService.getLastLocation());
-        outState.putParcelable(Constants.EXTRA_INMOVABLE_DATA, mPresenter.getInmovable());
     }
 
     @Override
@@ -152,6 +140,22 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
             mService.startLocationUpdates();
         }
         onUpdateLocation(mService.isActive(), mService.getLastLocation());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQ_CODE_GPS_ACTIVATE) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    Log.d(TAG, "El usuario accedió a la activación del dispositivo GPS.");
+                    mService.startLocationUpdates();
+                    break;
+                case Activity.RESULT_CANCELED:
+                    Log.d(TAG, "El usuario decidió no activar el dispositivo GPS.");
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -175,15 +179,15 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
         for (Fragment fragment : fragments) {
             if (fragment instanceof InmovableCreateMainFragment) {
+                Log.w(TAG, "Obtenido el Fragment de los datos principales.");
                 ((InmovableCreateMainFragment) fragment).setInmovableMainData();
-                Log.d(TAG, "Obtenidos datos del Fragment de los datos principales.");
             }
             if (fragment instanceof InmovableCreateLocationFragment) {
-                Log.d(TAG, "Obtenidos datos del Fragment de la ubicación.");
+                Log.d(TAG, "Obtenido el Fragment de los datos de ubicación.");
                 ((InmovableCreateLocationFragment) fragment).setInmovableLocationData();
             }
             if (fragment instanceof InmovableCreatePhotoFragment) {
-                Log.d(TAG, "Obtenidos datos del Fragment de la foto.");
+                Log.d(TAG, "Obtenido el Fragment de la foto del inmueble.");
                 ((InmovableCreatePhotoFragment) fragment).setInmovablePhotoData();
             }
         }
@@ -200,7 +204,8 @@ public class InmovableCreateActivity extends AppCompatActivity implements IInmov
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         if (Permissions.checkFromResults(permissions, grantResults)) {
             mPresenter.saveInmovable(true);
         } else {

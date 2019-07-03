@@ -35,7 +35,7 @@ public class InmovableListViewHolder extends RecyclerView.ViewHolder {
         mPrice.setText(Utilities.formatMoney(price));
         mDirection.setText(direction);
         // Colocar foto del inmueble, si es que existe
-        String filename = String.format(Locale.getDefault(), Constants.IMAGE_INMOVABLE_FORMAT, id);
+        String filename = String.format(Locale.US, Constants.IMAGE_INMOVABLE_FORMAT, id);
         Bitmap image = Image.loadFromExternalStorage(filename);
         if (image != null) {
             mPhoto.setImageBitmap(image);

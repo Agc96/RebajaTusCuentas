@@ -1,9 +1,5 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.data.api;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;

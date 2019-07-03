@@ -41,8 +41,8 @@ public class InmovableCreateSaveTask extends AsyncTask<Void, Void, Integer> {
             return R.string.inm_create_msg_failure;
         }
         // Guardar los datos del inmueble y verificar que se guardaron exitosamente.
-        long rowId = database.inmovableDao().insert(mInmovable);
-        if (rowId <= 0) {
+        long id = database.inmovableDao().insert(mInmovable);
+        if (id <= 0) {
             return R.string.inm_create_msg_failure;
         }
         // Ver si vamos a guardar la imagen del inmueble, si no es así ya terminamos
@@ -51,7 +51,7 @@ public class InmovableCreateSaveTask extends AsyncTask<Void, Void, Integer> {
         }
         if (mSavePhoto) {
             // Mover la foto del inmueble al almacenamiento externo
-            String filename = String.format(Locale.getDefault(), Constants.IMAGE_INMOVABLE_FORMAT, rowId);
+            String filename = String.format(Locale.US, Constants.IMAGE_INMOVABLE_FORMAT, id);
             if (Image.moveToExternalStorage(mPhotoPath, filename)) {
                 return R.string.inm_create_msg_saved_photo;
             } else {

@@ -1,6 +1,5 @@
 package pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.list;
 
-import android.content.Context;
 import android.content.Intent;
 
 import androidx.appcompat.app.ActionBar;
@@ -21,7 +20,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.data.db.entities.InmovableMainData
 import pe.edu.pucp.a20190000.rebajatuscuentas.features.inmovable.create.InmovableCreateActivity;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
-public class InmovableListActivity extends AppCompatActivity implements IInmovableListView {
+public class InmovableListActivity extends AppCompatActivity {
     private final static String TAG = "RTC_INM_LIST_ACT";
     private Toolbar mToolbar;
     private RecyclerView mRecycler;
@@ -79,11 +78,6 @@ public class InmovableListActivity extends AppCompatActivity implements IInmovab
         Intent intent = new Intent(this, InmovableCreateActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
     }
 
     @Override

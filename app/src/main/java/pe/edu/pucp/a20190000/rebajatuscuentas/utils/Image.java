@@ -27,7 +27,7 @@ public class Image {
      */
     public static File create(Context context) {
         // Formulamos el formato del archivo (sin la extensión)
-        SimpleDateFormat now = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        SimpleDateFormat now = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
         String filename = "RTC_PHOTO_" + now.format(new Date());
         // Obtenemos un directorio reservado para uso de la aplicación
         File directory = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);

@@ -16,9 +16,7 @@ import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Constants;
 import pe.edu.pucp.a20190000.rebajatuscuentas.utils.Utilities;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
-
     private final static String TAG = "RTC_LOGIN_ACT";
-
     private EditText mUsername;
     private EditText mPassword;
     private Button mSubmit;
@@ -49,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         }
     }
 
+    @Override
     public void askForLoginOffline() {
         // Preguntar al usuario
         new AlertDialog.Builder(this)
@@ -68,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 .show();
     }
 
+    @Override
     public void showErrorDialog(String message) {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.login_dlg_error_title)
@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 .show();
     }
 
+    @Override
     public void goToHomePage(String fullName, String email) {
         // Iniciar la actividad principal
         Intent intent = new Intent(this, HomeActivity.class);

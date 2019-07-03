@@ -13,10 +13,9 @@ public final class Constants {
     // Códigos de petición para la interacción entre componentes de Android
     public static final int REQ_CODE_GPS_PERMISSIONS = 1001;
     public static final int REQ_CODE_GPS_ACTIVATE = 1002;
-    public static final int REQ_CODE_GPS_GEOCODING = 1003; // TODO
-    public static final int REQ_CODE_CAMERA_PERMISSIONS = 1011;
-    public static final int REQ_CODE_CAMERA_INTENT = 1012;
-    public static final int REQ_CODE_SAVE_PERMISSIONS = 1013;
+    public static final int REQ_CODE_CAMERA_PERMISSIONS = 1003;
+    public static final int REQ_CODE_CAMERA_INTENT = 1004;
+    public static final int REQ_CODE_SAVE_PERMISSIONS = 1005;
 
     // FileProvider para esta aplicación
     public static final String FILE_PROVIDER = "pe.edu.pucp.a20190000.rebajatuscuentas.fileprovider";
